@@ -1,0 +1,14 @@
+C:\git\Ultra_Launcher\Ultra_Launcher\bin\Debug\net8.0\Ultra_Launcher.exe
+C:\git\Ultra_Launcher\Ultra_Launcher\bin\Debug\net8.0\Ultra_Launcher.deps.json
+C:\git\Ultra_Launcher\Ultra_Launcher\bin\Debug\net8.0\Ultra_Launcher.runtimeconfig.json
+C:\git\Ultra_Launcher\Ultra_Launcher\bin\Debug\net8.0\Ultra_Launcher.dll
+C:\git\Ultra_Launcher\Ultra_Launcher\bin\Debug\net8.0\Ultra_Launcher.pdb
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\Ultra_Launcher.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\Ultra_Launcher.AssemblyInfoInputs.cache
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\Ultra_Launcher.AssemblyInfo.cs
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\Ultra_Launcher.csproj.CoreCompileInputs.cache
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\Ultra_Launcher.dll
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\refint\Ultra_Launcher.dll
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\Ultra_Launcher.pdb
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\Ultra_Launcher.genruntimeconfig.cache
+C:\git\Ultra_Launcher\Ultra_Launcher\obj\Debug\net8.0\ref\Ultra_Launcher.dll
