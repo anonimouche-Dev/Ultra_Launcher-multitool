@@ -16,47 +16,65 @@ async Task UltraLauncher()
             break;
         default: break;
     }
-    if (choixFonction == "")
+    switch (choixFonction)
     {
-        Console.Clear();
-        UltraLauncher();
-    }
-
-
-    if (choixFonction == "2")
-    {
-        Console.Title = "Calculatrice";
-        Calculatrice();
-    }
-
-    if (choixFonction == "3")
-    {
-        Timer(demo);
-    }
-
-    if (choixFonction == "4")
-    {
-        Console.WriteLine("seconde: ");
-        int chrono = 0;
-        Console.Title = "Chrono";
-        while (true)
-        {
-            chrono++;
-            Console.WriteLine($"seconde:{chrono}");
-            Thread.Sleep(1000);
+        case "":
             Console.Clear();
-        }
-        //FinDuProgramme();
+            UltraLauncher();
+            break;
+        default: break;
     }
-    if (choixFonction == "5")
+
+
+    switch (choixFonction)
     {
-        Console.Clear();
+        case "2":
+              Console.Title = "Calculatrice";
+  Calculatrice();
 
-        LancerLeProgramme();
+            break;
+        default: break;
+    }
+
+    switch (choixFonction)
+    {
+        case "3":
+            Console.Title = "Timer";
+            Console.Clear();
+            Timer(demo);
+
+            break;
+        default: break;
+    }
+
+    switch (choixFonction)
+    {
+        case "4":
+            Console.WriteLine("seconde: ");
+            int chrono = 0;
+            Console.Title = "Chrono";
+            while (true)
+            {
+                chrono++;
+                Console.WriteLine($"seconde:{chrono}");
+                Thread.Sleep(1000);
+                Console.Clear();
+            }
+            break;
+        default: break;
+    }
+    switch (choixFonction)
+    {
+        case "5":
+            Console.Clear();
+            LancerLeProgramme();
+
+            break;
+        default: break;
     }
 
 
-    if (choixFonction == "7")
+    if (choixFonction == "6")
     {
         Console.Clear();
         await AppelApi();
@@ -368,8 +386,7 @@ static string ChoisirUneAction()
     Console.WriteLine("3 => Timer Beta");
     Console.WriteLine("4 => Chrono Beta");
     Console.WriteLine("5 => Jeu  video : en cours de codage ");
-    Console.WriteLine("6 => Bloc-note  : en cours de codage ");
-    Console.WriteLine("7 => Histoire en ligne");
+    Console.WriteLine("6 => Histoire en ligne");
     string choixFonction = Console.ReadLine();
     return choixFonction;
 }
