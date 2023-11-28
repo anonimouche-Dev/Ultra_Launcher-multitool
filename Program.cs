@@ -258,10 +258,64 @@ void Calculatrice()
                                                                                      
                                                                                       
             ");
-    int nb1 = LireUnNombre();
-    int nb2 = LireUnNombre();
-    int total = nb1 + nb2;
-    LettreParLettre($"{nb1} + {nb2} = {total}");
+
+    
+
+
+    static void Main()
+    {
+        Console.WriteLine("Bienvenue dans la calculatrice!");
+
+        while (true)
+        {
+            Console.WriteLine("Veuillez entrer le premier nombre:");
+            double nombre1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Veuillez entrer le deuxième nombre:");
+            double nombre2 = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Veuillez choisir une opération: (+, -, *, /)");
+            char operation = Convert.ToChar(Console.ReadLine());
+
+            double resultat = 0;
+
+            switch (operation)
+            {
+                case '+':
+                    resultat = nombre1 + nombre2;
+                    break;
+                case '-':
+                    resultat = nombre1 - nombre2;
+                    break;
+                case '*':
+                    resultat = nombre1 * nombre2;
+                    break;
+                case '/':
+                    resultat = nombre1 / nombre2;
+                    break;
+                default:
+                    Console.WriteLine("Opération invalide!");
+                    break;
+            }
+
+            Console.WriteLine("Le résultat est: " + resultat);
+
+            Console.WriteLine("Voulez-vous continuer? (Oui/Non)");
+            string continuer = Console.ReadLine();
+
+            if (continuer.ToLower() != "oui")
+                break;
+        }
+
+        Console.WriteLine("Merci d'avoir utilisé la calculatrice!");
+    
+    }
+
+        // ancien code 
+  //  int nb1 = LireUnNombre();
+   // int nb2 = LireUnNombre();
+    //int total = nb1 + nb2;
+    //LettreParLettre($"{nb1} + {nb2} = {total}");
 }
 
 void Histoire()
