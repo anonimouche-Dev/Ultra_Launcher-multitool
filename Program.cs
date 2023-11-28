@@ -269,12 +269,13 @@ void Calculatrice()
         {
             Console.WriteLine("Veuillez entrer le premier nombre:");
             double nombre1 = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("Veuillez choisir une opération: (+, -, *, /)");
+        char operation = Convert.ToChar(Console.ReadLine());
 
-            Console.WriteLine("Veuillez entrer le deuxième nombre:");
+        Console.WriteLine("Veuillez entrer le deuxième nombre:");
             double nombre2 = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Veuillez choisir une opération: (+, -, *, /)");
-            char operation = Convert.ToChar(Console.ReadLine());
+          
 
             double resultat = 0;
 
