@@ -262,8 +262,7 @@ void Calculatrice()
     
 
 
-    static void Main()
-    {
+  
         Console.WriteLine("Bienvenue dans la calculatrice!");
 
         while (true)
@@ -309,7 +308,7 @@ void Calculatrice()
 
         Console.WriteLine("Merci d'avoir utilisé la calculatrice!");
     
-    }
+    
 
         // ancien code 
   //  int nb1 = LireUnNombre();
