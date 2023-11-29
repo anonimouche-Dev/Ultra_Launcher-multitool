@@ -443,6 +443,7 @@ static string ChoisirUneAction()
     Console.WriteLine("6 => Histoire en ligne");
     string choixFonction = Console.ReadLine();
     return choixFonction;
+
 }
 
 public class HistoireEnLigne
