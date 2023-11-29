@@ -263,16 +263,16 @@ void Calculatrice()
 
 
   
-        Console.WriteLine("Bienvenue dans la calculatrice!");
+        X("Bienvenue dans la calculatrice!");
 
         while (true)
         {
-            Console.WriteLine("Veuillez entrer le premier nombre:");
+        LettreParLettre("Veuillez entrer le premier nombre:");
             double nombre1 = Convert.ToDouble(Console.ReadLine());
-        Console.WriteLine("Veuillez choisir Un calculateur : (+, -, *, /)");
+        LettreParLettre("Veuillez choisir Un calculateur : (+, -, *, /)");
         char operation = Convert.ToChar(Console.ReadLine());
 
-        Console.WriteLine("Veuillez entrer le deuxième nombre:");
+        LettreParLettre("Veuillez entrer le deuxième nombre:");
             double nombre2 = Convert.ToDouble(Console.ReadLine());
 
           
