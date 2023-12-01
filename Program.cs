@@ -177,6 +177,7 @@ void Timer(bool demo)
     Console.Beep(523, 125); Console.Beep(587, 125); Thread.Sleep(250); Console.Beep(622, 125); Thread.Sleep(250);
     Console.Beep(587, 125);
     Thread.Sleep(250); Console.Beep(523, 125);
+    
 }
 
 void Prompt()
@@ -439,7 +440,7 @@ static string ChoisirUneAction()
     Console.WriteLine("0 => Quitter");
     Console.WriteLine("1 => Histoire");
     Console.WriteLine("2 => Calculatrice");
-    Console.WriteLine("3 => Timer Beta");
+    Console.WriteLine("3 => Timer ");
     Console.WriteLine("4 => Chrono Beta");
     Console.WriteLine("5 => Jeu  video : en cours de codage ");
     Console.WriteLine("6 => Histoire en ligne");
