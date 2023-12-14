@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
-
 bool demo = true; //debug mode on = false
 await UltraLauncher();
 
@@ -50,16 +49,30 @@ async Task UltraLauncher()
     switch (choixFonction)
     {
         case "4":
-            Console.WriteLine("seconde: ");
-            int chrono = 0;
-            Console.Title = "Chrono";
-            while (true)
-            {
-                chrono++;
-                Console.WriteLine($"seconde:{chrono}");
-                Thread.Sleep(1000);
-                Console.Clear();
-            }
+            
+
+   static void Main()
+    {
+        Console.WriteLine("Press any key to start the timer...");
+        Console.ReadKey();
+
+        TimeSpan timeElapsed = TimeSpan.Zero;
+
+        Timer timer = new Timer(state =>
+        {
+            timeElapsed = timeElapsed.Add(TimeSpan.FromSeconds(1));
+            Console.Clear();
+            Console.WriteLine("Time elapsed: {0}", timeElapsed.ToString(@"hh\:mm\:ss"));
+        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+
+        Console.ReadKey();
+
+        timer.Dispose();
+        Console.WriteLine("Timer stopped. Time elapsed: {0}", timeElapsed.ToString(@"hh\:mm\:ss"));
+        Console.ReadKey();
+    }
+
+
             break;
         default: break;
     }

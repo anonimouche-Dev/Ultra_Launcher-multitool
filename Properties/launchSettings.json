@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Ultra_Launcher": {
+      "commandName": "Project",
+      "jsWebView2Debugging": false
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}
