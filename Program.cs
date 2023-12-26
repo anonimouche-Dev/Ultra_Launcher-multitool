@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
-using System;
-using System.IO;
 bool demo = true; //debug mode on = false
 await UltraLauncher();
 
