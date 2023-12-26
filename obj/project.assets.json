@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\git\\Ultra_Launcher\\Ultra_Launcher\\Ultra_Launcher.csproj",
+      "projectUniqueName": "C:\\Users\\natha\\OneDrive\\Bureau\\PROGRAM\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj",
       "projectName": "Ultra_Launcher",
-      "projectPath": "C:\\git\\Ultra_Launcher\\Ultra_Launcher\\Ultra_Launcher.csproj",
+      "projectPath": "C:\\Users\\natha\\OneDrive\\Bureau\\PROGRAM\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj",
       "packagesPath": "C:\\Users\\natha\\.nuget\\packages\\",
-      "outputPath": "C:\\git\\Ultra_Launcher\\Ultra_Launcher\\obj\\",
+      "outputPath": "C:\\Users\\natha\\OneDrive\\Bureau\\PROGRAM\\C#\\git\\Ultra_Launcher-multitool\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -46,11 +46,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
