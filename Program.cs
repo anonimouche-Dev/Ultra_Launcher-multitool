@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
+﻿using System.Text.Json;
 bool demo = true; //debug mode on = false
 await UltraLauncher();
 
@@ -79,91 +78,9 @@ async Task UltraLauncher()
     switch (choixFonction)
     {
         case "5":
-            Console.Clear();
+           
             
-
-
-    static void Main(string[] args)
-    {
-        string filePath = "bloc_notes.txt";
-
-        bool exit = false;
-        while (!exit)
-        {
-            Console.Clear();
-
-            Console.WriteLine("Bloc-Notes");
-            Console.WriteLine("1. Afficher le contenu");
-            Console.WriteLine("2. Modifier le contenu");
-            Console.WriteLine("3. Quitter");
-
-            Console.Write("Votre choix : ");
-            string choix = Console.ReadLine();
-
-            Console.Clear();
-
-            switch (choix)
-            {
-                case "1":
-                    AfficherContenu(filePath);
-                    break;
-                case "2":
-                    ModifierContenu(filePath);
-                    break;
-                case "3":
-                    exit = true;
-                    break;
-                default:
-                    Console.WriteLine("Choix invalide.");
-                    break;
-            }
-
-            if (!exit)
-            {
-                Console.WriteLine("Appuyez sur une touche pour continuer...");
-                Console.ReadKey();
-            }
-        }
-    
-
-    static void AfficherContenu(string filePath)
-    {
-        if (File.Exists(filePath))
-        {
-            string contenu = File.ReadAllText(filePath);
-            Console.WriteLine("Contenu :");
-            Console.WriteLine(contenu);
-        }
-        else
-        {
-            Console.WriteLine("Fichier introuvable.");
-        }
-    }
-
-    static void ModifierContenu(string filePath)
-    {
-        Console.WriteLine("Entrez le nouveau contenu (terminez par une ligne vide pour enregistrer) :");
-
-        string contenu = "";
-
-        while (true)
-        {
-            string ligne = Console.ReadLine();
-
-            if (ligne == "")
-                break;
-
-            contenu += ligne + Environment.NewLine;
-        }
-
-        File.WriteAllText(filePath, contenu);
-
-        Console.WriteLine("Contenu enregistré avec succès.");
-    }
-}
-
-
-break;
+            break;
         default: break;
     }
 
@@ -175,6 +92,7 @@ break;
     }
     FinDuProgramme();
 }
+
 
 void LettreParLettre(string phrase)
 {
@@ -305,16 +223,7 @@ void Prompt()
     Console.Clear();
 }
 
-static void LancerLeProgramme()
-{
 
-    string executablePath = @"C:\git\Ultra-Launcher\game and oters aplication est fichier iniore\consoleGame1\consoleGame1\bin\Debug\net7.0\consoleGame1.exe";
-
-    ProcessStartInfo processStartInfo = new ProcessStartInfo(executablePath);
-    processStartInfo.WorkingDirectory = @"C:\git\Ultra-Launcher\game and oters aplication est fichier iniore\consoleGame1\consoleGame1\bin\Debug\net7.0";
-
-    Process.Start(processStartInfo);
-}
 
 async Task AppelApi()
 {
@@ -536,7 +445,7 @@ static string ChoisirUneAction()
     Console.WriteLine("2 => Calculatrice");
     Console.WriteLine("3 => Timer ");
     Console.WriteLine("4 => Chrono Beta");
-    Console.WriteLine("5 => Bloc-Notes");
+    Console.WriteLine("5 => Explorateur De Fichier");
     Console.WriteLine("6 => Histoire en ligne");
     string choixFonction = Console.ReadLine();
     return choixFonction;

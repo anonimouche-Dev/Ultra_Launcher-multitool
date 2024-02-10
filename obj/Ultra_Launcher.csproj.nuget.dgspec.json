@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\natha\\OneDrive\\Bureau\\PROGRAM\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj": {}
+    "C:\\Users\\natha\\OneDrive\\Bureau\\Bureau\\Dev\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj": {}
   },
   "projects": {
-    "C:\\Users\\natha\\OneDrive\\Bureau\\PROGRAM\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj": {
+    "C:\\Users\\natha\\OneDrive\\Bureau\\Bureau\\Dev\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\natha\\OneDrive\\Bureau\\PROGRAM\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj",
+        "projectUniqueName": "C:\\Users\\natha\\OneDrive\\Bureau\\Bureau\\Dev\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj",
         "projectName": "Ultra_Launcher",
-        "projectPath": "C:\\Users\\natha\\OneDrive\\Bureau\\PROGRAM\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj",
+        "projectPath": "C:\\Users\\natha\\OneDrive\\Bureau\\Bureau\\Dev\\C#\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj",
         "packagesPath": "C:\\Users\\natha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\natha\\OneDrive\\Bureau\\PROGRAM\\C#\\git\\Ultra_Launcher-multitool\\obj\\",
+        "outputPath": "C:\\Users\\natha\\OneDrive\\Bureau\\Bureau\\Dev\\C#\\git\\Ultra_Launcher-multitool\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -39,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -60,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
