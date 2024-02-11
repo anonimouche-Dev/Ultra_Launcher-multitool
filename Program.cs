@@ -361,6 +361,10 @@ string ChoisirUneHistoire(string nomHero)
     Console.WriteLine("0 => Quitter");
     Console.WriteLine("1 => Histoire: le gateau");
     Console.WriteLine("2 => Le chien abandonné");
+    Console.WriteLine("3 => Le Hero");
+    Console.WriteLine("4 => Histoire: Le Trésor du Pirate ");
+    Console.WriteLine("5 => Histoire: La Quête du Dragon d'Or ");
+    Console.WriteLine("6 => Histoire: La Légende de l'Épée de Lumière ");
     return Console.ReadLine();
 }
 
@@ -406,6 +410,53 @@ void RaconterUneHistoire(string nomHero, string choix)
         LettreParLettre(nomHero + " est mambo sont super amis mitemenp"); Console.ReadKey();
 
     }
+    if (choix == "3") 
+    {
+        LettreParLettre($"Dans un monde où les rivières chantaient des mélodies d'antan et les arbres murmuraient des secrets oubliés, se dressait un héros peu ordinaire du nom de {nomHero}. Son nom était une énigme en soi, tout comme ses origines mystérieuses. Il avait été trouvé dans les bras d'une rivière tumultueuse, enveloppé dans une écharpe ornée de symboles anciens.\r\n\r\n{nomHero} avait grandi parmi les sages du village d'Aurélie, où la magie était aussi commune que le souffle du vent. Il était doté d'un don rare : la capacité à communiquer avec les créatures magiques qui peuplaient la forêt environnante. Grâce à ses talents, il était devenu le gardien de la forêt, veillant sur ses habitants avec une bienveillance infinie.\r\n\r\nUn jour, alors que le ciel s'assombrissait et que des ombres menaçantes se profilaient à l'horizon, {nomHero} reçut une vision troublante. Une ancienne force maléfique, emprisonnée depuis des siècles dans les profondeurs de la terre, se préparait à se libérer et à plonger le monde dans les ténèbres éternelles.\r\n\r\nGuidé par son destin, {nomHero} entreprit un voyage périlleux à travers des contrées inconnues, affrontant des monstres terrifiants et des épreuves mortelles. Avec l'aide de ses fidèles compagnons - un  Chiwawa majestueux nommé Mambo, un faucon rapide comme l'éclair appelé Zéphyr, et un esprit de la forêt nommé Sylve - il franchit chaque obstacle avec bravoure et détermination.\r\n\r\nFinalement, après de nombreux défis et sacrifices, {nomHero} atteignit le cœur des ténèbres, là où l'ancienne force maléfique sommeillait. Dans un ultime affrontement épique, il fit appel à tout son courage et à toute sa magie pour sceller à nouveau le mal dans les entrailles de la terre.\r\n\r\nDe retour chez lui, {nomHero} fut accueilli en héros, mais il savait que son voyage n'était pas terminé. Car même dans la paix retrouvée, de nouveaux défis attendaient, et il était prêt à les affronter avec la même bravoure et la même détermination qui l'avaient guidé jusqu'alors.");
+    }
+    if (choix == "4")
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        LettreParLettre("Histoire: Le Trésor du Pirate");
+        LettreParLettre("Alerte ! Alerte !");
+        LettreParLettre("Les habitants de l'île de Tortuga sont en émoi.");
+        LettreParLettre("Un vieux parchemin révélant l'emplacement du trésor légendaire du pirate Barbe Noire a été découvert !");
+        LettreParLettre("Un(e) héros/héroïne apparut, prêt(e) à affronter les dangers de la mer.");
+        LettreParLettre($"Le nom(e) de ce héros/héroïne est {nomHero}.");
+        LettreParLettre("Après une aventure mouvementée et des combats contre des flibustiers, le trésor fut enfin découvert.");
+        LettreParLettre($"Le village de Tortuga célébra {nomHero} comme le plus grand(e) pirate de tous les temps !");
+        Console.ReadKey();
+    }
+
+    if (choix == "5")
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        LettreParLettre("Histoire: La Quête du Dragon d'Or");
+        LettreParLettre("Une prophétie ancestrale raconte l'existence d'un dragon légendaire, gardien d'un trésor inestimable.");
+        LettreParLettre("Ce dragon, fait d'or pur, réside au sommet de la montagne interdite, où nul mortel n'a jamais osé s'aventurer.");
+        LettreParLettre("Un(e) héro/héroïne audacieux(se) se leva pour relever le défi de la quête du dragon d'or.");
+        LettreParLettre($"Son nom(e) est {nomHero}, et il/elle est prêt(e) à affronter tous les dangers pour réussir sa mission.");
+        LettreParLettre("Guidé(e) par sa bravoure et sa détermination, {nomHero} escalada la montagne et défia le dragon.");
+        LettreParLettre("Après un combat épique, le dragon, impressionné par son courage, lui céda le trésor.");
+        LettreParLettre("Ainsi, {nomHero} devint célèbre dans tout le royaume comme le plus grand chasseur de trésors.");
+        Console.ReadKey();
+    }
+
+    if (choix == "6")
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        LettreParLettre($"Histoire: La Légende de l'Épée de Lumière");
+        LettreParLettre($"Dans un monde plongé dans les ténèbres, une légende ancienne raconte l'existence d'une épée légendaire, forgée dans la lumière elle-même.");
+        LettreParLettre($"Cette épée, capable de vaincre les forces du mal, attend son héros/héroïne destiné(e) à la manier.");
+        LettreParLettre($"Un(e) héro/héroïne courageux(se) se lève pour relever le défi de retrouver l'Épée de Lumière et sauver le monde de l'obscurité éternelle.");
+        LettreParLettre($"Son nom(e) est {nomHero}, et son destin est de devenir le(la) gardien(ne) de l'Épée de Lumière.");
+        LettreParLettre($"{nomHero}, accompagné(e) de ses fidèles compagnons, entreprend un voyage périlleux à travers des contrées dangereuses.");
+        LettreParLettre($"Après de nombreux défis et épreuves, {nomHero} découvre enfin l'Épée de Lumière.");
+        LettreParLettre($"Avec cette épée à ses côtés, {nomHero} affronte l'obscurité et ramène la lumière dans le monde.");
+        LettreParLettre($"Désormais, {nomHero} est vénéré(e) comme le(la) sauveur(se) de la prophétie, et son nom résonne dans les annales de l'histoire.");
+        Console.ReadKey();
+    }
+
 }
 
 bool DoitContinuer(string choix)
