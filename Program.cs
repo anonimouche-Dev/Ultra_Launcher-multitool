@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Microsoft.VisualBasic;
+using System.Text.Json;
 bool demo = true; //debug mode on = false
 await UltraLauncher();
 
@@ -27,8 +28,8 @@ async Task UltraLauncher()
     switch (choixFonction)
     {
         case "2":
-              Console.Title = "Calculatrice";
-  Calculatrice();
+            Console.Title = "Calculatrice";
+            Calculatrice();
 
             break;
         default: break;
@@ -48,28 +49,28 @@ async Task UltraLauncher()
     switch (choixFonction)
     {
         case "4":
-            
 
-   static void Main()
-    {
-        Console.WriteLine("Press any key to start the timer...");
-        Console.ReadKey();
 
-        TimeSpan timeElapsed = TimeSpan.Zero;
+            static void Main()
+            {
+                Console.WriteLine("Press any key to start the timer...");
+                Console.ReadKey();
 
-        Timer timer = new Timer(state =>
-        {
-            timeElapsed = timeElapsed.Add(TimeSpan.FromSeconds(1));
-            Console.Clear();
-            Console.WriteLine("Time elapsed: {0}", timeElapsed.ToString(@"hh\:mm\:ss"));
-        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+                TimeSpan timeElapsed = TimeSpan.Zero;
 
-        Console.ReadKey();
+                Timer timer = new Timer(state =>
+                {
+                    timeElapsed = timeElapsed.Add(TimeSpan.FromSeconds(1));
+                    Console.Clear();
+                    Console.WriteLine("Time elapsed: {0}", timeElapsed.ToString(@"hh\:mm\:ss"));
+                }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
 
-        timer.Dispose();
-        Console.WriteLine("Timer stopped. Time elapsed: {0}", timeElapsed.ToString(@"hh\:mm\:ss"));
-        Console.ReadKey();
-    }
+                Console.ReadKey();
+
+                timer.Dispose();
+                Console.WriteLine("Timer stopped. Time elapsed: {0}", timeElapsed.ToString(@"hh\:mm\:ss"));
+                Console.ReadKey();
+            }
 
 
             break;
@@ -78,8 +79,10 @@ async Task UltraLauncher()
     switch (choixFonction)
     {
         case "5":
-           
-            
+            Console.Clear();
+            Snake.Play();
+
+
             break;
         default: break;
     }
@@ -189,7 +192,7 @@ void Timer(bool demo)
     Console.Beep(523, 125); Console.Beep(587, 125); Thread.Sleep(250); Console.Beep(622, 125); Thread.Sleep(250);
     Console.Beep(587, 125);
     Thread.Sleep(250); Console.Beep(523, 125);
-    
+
 }
 
 void Prompt()
@@ -265,61 +268,61 @@ void Calculatrice()
                                                                                       
             ");
 
-    
 
 
-  
-        X("Bienvenue dans la calculatrice!");
 
-        while (true)
-        {
+
+    X("Bienvenue dans la calculatrice!");
+
+    while (true)
+    {
         LettreParLettre("Veuillez entrer le premier nombre:");
-            double nombre1 = Convert.ToDouble(Console.ReadLine());
+        double nombre1 = Convert.ToDouble(Console.ReadLine());
         LettreParLettre("Veuillez choisir Un calculateur : (+, -, *, /)");
         char operation = Convert.ToChar(Console.ReadLine());
 
         LettreParLettre("Veuillez entrer le deuxième nombre:");
-            double nombre2 = Convert.ToDouble(Console.ReadLine());
+        double nombre2 = Convert.ToDouble(Console.ReadLine());
 
-          
 
-            double resultat = 0;
 
-            switch (operation)
-            {
-                case '+':
-                    resultat = nombre1 + nombre2;
-                    break;
-                case '-':
-                    resultat = nombre1 - nombre2;
-                    break;
-                case '*':
-                    resultat = nombre1 * nombre2;
-                    break;
-                case '/':
-                    resultat = nombre1 / nombre2;
-                    break;
-                default:
-                    Console.WriteLine("Opération invalide!");
-                    break;
-            }
+        double resultat = 0;
 
-            Console.WriteLine("Le résultat est: " + resultat);
-
-            Console.WriteLine("Voulez-vous continuer? (Oui/Non)");
-            string continuer = Console.ReadLine();
-
-            if (continuer.ToLower() != "oui")
+        switch (operation)
+        {
+            case '+':
+                resultat = nombre1 + nombre2;
+                break;
+            case '-':
+                resultat = nombre1 - nombre2;
+                break;
+            case '*':
+                resultat = nombre1 * nombre2;
+                break;
+            case '/':
+                resultat = nombre1 / nombre2;
+                break;
+            default:
+                Console.WriteLine("Opération invalide!");
                 break;
         }
 
-        Console.WriteLine("Merci d'avoir utilisé la calculatrice!");
-    
-    
+        Console.WriteLine("Le résultat est: " + resultat);
 
-        // ancien code 
-  //  int nb1 = LireUnNombre();
-   // int nb2 = LireUnNombre();
+        Console.WriteLine("Voulez-vous continuer? (Oui/Non)");
+        string continuer = Console.ReadLine();
+
+        if (continuer.ToLower() != "oui")
+            break;
+    }
+
+    Console.WriteLine("Merci d'avoir utilisé la calculatrice!");
+
+
+
+    // ancien code 
+    //  int nb1 = LireUnNombre();
+    // int nb2 = LireUnNombre();
     //int total = nb1 + nb2;
     //LettreParLettre($"{nb1} + {nb2} = {total}");
 }
@@ -410,7 +413,7 @@ void RaconterUneHistoire(string nomHero, string choix)
         LettreParLettre(nomHero + " est mambo sont super amis mitemenp"); Console.ReadKey();
 
     }
-    if (choix == "3") 
+    if (choix == "3")
     {
         LettreParLettre($"Dans un monde où les rivières chantaient des mélodies d'antan et les arbres murmuraient des secrets oubliés, se dressait un héros peu ordinaire du nom de {nomHero}. Son nom était une énigme en soi, tout comme ses origines mystérieuses. Il avait été trouvé dans les bras d'une rivière tumultueuse, enveloppé dans une écharpe ornée de symboles anciens.\r\n\r\n{nomHero} avait grandi parmi les sages du village d'Aurélie, où la magie était aussi commune que le souffle du vent. Il était doté d'un don rare : la capacité à communiquer avec les créatures magiques qui peuplaient la forêt environnante. Grâce à ses talents, il était devenu le gardien de la forêt, veillant sur ses habitants avec une bienveillance infinie.\r\n\r\nUn jour, alors que le ciel s'assombrissait et que des ombres menaçantes se profilaient à l'horizon, {nomHero} reçut une vision troublante. Une ancienne force maléfique, emprisonnée depuis des siècles dans les profondeurs de la terre, se préparait à se libérer et à plonger le monde dans les ténèbres éternelles.\r\n\r\nGuidé par son destin, {nomHero} entreprit un voyage périlleux à travers des contrées inconnues, affrontant des monstres terrifiants et des épreuves mortelles. Avec l'aide de ses fidèles compagnons - un  Chiwawa majestueux nommé Mambo, un faucon rapide comme l'éclair appelé Zéphyr, et un esprit de la forêt nommé Sylve - il franchit chaque obstacle avec bravoure et détermination.\r\n\r\nFinalement, après de nombreux défis et sacrifices, {nomHero} atteignit le cœur des ténèbres, là où l'ancienne force maléfique sommeillait. Dans un ultime affrontement épique, il fit appel à tout son courage et à toute sa magie pour sceller à nouveau le mal dans les entrailles de la terre.\r\n\r\nDe retour chez lui, {nomHero} fut accueilli en héros, mais il savait que son voyage n'était pas terminé. Car même dans la paix retrouvée, de nouveaux défis attendaient, et il était prêt à les affronter avec la même bravoure et la même détermination qui l'avaient guidé jusqu'alors.");
     }
@@ -496,7 +499,7 @@ static string ChoisirUneAction()
     Console.WriteLine("2 => Calculatrice");
     Console.WriteLine("3 => Timer ");
     Console.WriteLine("4 => Chrono Beta");
-    Console.WriteLine("5 => Explorateur De Fichier");
+    Console.WriteLine("5 => Snake");
     Console.WriteLine("6 => Histoire en ligne");
     string choixFonction = Console.ReadLine();
     return choixFonction;
@@ -508,4 +511,181 @@ public class HistoireEnLigne
     public int id { get; set; }
     public string titre { get; set; }
     public string contenu { get; set; }
+}
+public static class Snake
+{
+    static int width = 40;
+    static int height = 20;
+    static int score = 0;
+    static int speed = 100;
+    static bool gameOver = false;
+    static Direction direction = Direction.Right;
+    static Random random = new Random();
+    static List<Position> snake = new List<Position>();
+    static Position food = new Position();
+
+    enum Direction
+    {
+        Left,
+        Right,
+        Up,
+        Down
+    }
+
+    struct Position
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public static void Play()
+    {
+        Console.CursorVisible = false;
+
+        InitializeGame();
+        DrawBoard();
+
+        Thread inputThread = new Thread(MoveSnake);
+        inputThread.Start();
+
+        while (!gameOver)
+        {
+            UpdateGame();
+            Thread.Sleep(speed);
+        }
+
+        Console.SetCursorPosition(width / 2 - 5, height / 2);
+        Console.WriteLine("Game Over!");
+        Console.WriteLine($"Score: {score}");
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
+    }
+
+    static void InitializeGame()
+    {
+        snake.Add(new Position { X = width / 2, Y = height / 2 });
+
+        food = GenerateFoodPosition();
+        DrawFood();
+    }
+
+    static void DrawBoard()
+    {
+        Console.Clear();
+
+        // Draw top border
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine(new string('#', width + 2));
+
+        // Draw middle
+        for (int y = 0; y < height; y++)
+        {
+            Console.Write("#");
+            for (int x = 0; x < width; x++)
+            {
+                if (snake.Any(s => s.X == x && s.Y == y))
+                    Console.Write("O");
+                else if (x == food.X && y == food.Y)
+                    Console.Write("F");
+                else
+                    Console.Write(" ");
+            }
+            Console.WriteLine("#");
+        }
+
+        // Draw bottom border
+        Console.WriteLine(new string('#', width + 2));
+        Console.WriteLine($"Score: {score}");
+    }
+
+    static Position GenerateFoodPosition()
+    {
+        int x = random.Next(0, width);
+        int y = random.Next(0, height);
+
+        while (snake.Any(s => s.X == x && s.Y == y))
+        {
+            x = random.Next(0, width);
+            y = random.Next(0, height);
+        }
+
+        return new Position { X = x, Y = y };
+    }
+
+    static void DrawFood()
+    {
+        Console.SetCursorPosition(food.X + 1, food.Y + 1);
+        Console.Write("F");
+    }
+
+    static void MoveSnake()
+    {
+        while (!gameOver)
+        {
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            switch (keyInfo.Key)
+            {
+                case ConsoleKey.LeftArrow:
+                    if (direction != Direction.Right)
+                        direction = Direction.Left;
+                    break;
+                case ConsoleKey.RightArrow:
+                    if (direction != Direction.Left)
+                        direction = Direction.Right;
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (direction != Direction.Down)
+                        direction = Direction.Up;
+                    break;
+                case ConsoleKey.DownArrow:
+                    if (direction != Direction.Up)
+                        direction = Direction.Down;
+                    break;
+            }
+        }
+    }
+
+    static void UpdateGame()
+    {
+        Position newHead = new Position { X = snake.First().X, Y = snake.First().Y };
+
+        switch (direction)
+        {
+            case Direction.Left:
+                newHead.X--;
+                break;
+            case Direction.Right:
+                newHead.X++;
+                break;
+            case Direction.Up:
+                newHead.Y--;
+                break;
+            case Direction.Down:
+                newHead.Y++;
+                break;
+        }
+
+        if (newHead.X < 0 || newHead.X >= width || newHead.Y < 0 || newHead.Y >= height || snake.Any(s => s.X == newHead.X && s.Y == newHead.Y))
+        {
+            gameOver = true;
+            return;
+        }
+
+        snake.Insert(0, newHead);
+
+        if (newHead.X == food.X && newHead.Y == food.Y)
+        {
+            score++;
+            food = GenerateFoodPosition();
+            DrawFood();
+        }
+        else
+        {
+            Console.SetCursorPosition(snake.Last().X + 1, snake.Last().Y + 1);
+            Console.Write(" ");
+            snake.RemoveAt(snake.Count - 1);
+        }
+
+        DrawBoard();
+    }
 }
