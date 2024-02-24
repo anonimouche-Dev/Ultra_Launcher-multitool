@@ -51,26 +51,24 @@ async Task UltraLauncher()
         case "4":
 
 
-            static void Main()
+            int Crono = 0;
+            while (true)
             {
-                Console.WriteLine("Press any key to start the timer...");
-                Console.ReadKey();
+                await Task.Delay(1000); // Attendre 1 seconde
 
-                TimeSpan timeElapsed = TimeSpan.Zero;
+                Crono++; // Incrémenter le compteur
 
-                Timer timer = new Timer(state =>
+                if (Crono == 30)
                 {
-                    timeElapsed = timeElapsed.Add(TimeSpan.FromSeconds(1));
-                    Console.Clear();
-                    Console.WriteLine("Time elapsed: {0}", timeElapsed.ToString(@"hh\:mm\:ss"));
-                }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+                    Crono = 0; // Réinitialiser le compteur
+                    Console.Beep(); // Émettre un bip
+                }
 
-                Console.ReadKey();
-
-                timer.Dispose();
-                Console.WriteLine("Timer stopped. Time elapsed: {0}", timeElapsed.ToString(@"hh\:mm\:ss"));
-                Console.ReadKey();
+                Console.WriteLine(Crono); // Afficher le compteur
             }
+
+
+
 
 
             break;
@@ -678,6 +676,7 @@ public static class Snake
             score++;
             food = GenerateFoodPosition();
             DrawFood();
+
         }
         else
         {
