@@ -396,19 +396,9 @@ void RaconterUneHistoire(string nomHero, string choix)
     if (choix == "2")
     {
         Console.ForegroundColor = ConsoleColor.Magenta;
-        LettreParLettre("histoire: Le Chien abandonné");
-        LettreParLettre(" Alerte Alerte   ");
-        LettreParLettre("Un Chien a été abandonné");
-        LettreParLettre("c" + "e" + "s" + "t" + "un chihuahua, il est a la s.p.a");
-
-        LettreParLettre("un(e) hero  apparu");
-
-        LettreParLettre("le nom(e) de ce hero est " + nomHero);
-
-        LettreParLettre("Heresement  le Hero est cool ");
-        LettreParLettre(nomHero + " adopta Mambo");
-        LettreParLettre("mabo joua toute l apres midi avec " + nomHero);
-        LettreParLettre(nomHero + " est mambo sont super amis mitemenp"); Console.ReadKey();
+        Console.WriteLine("Histoire 2 : Le chien abandonné");
+        Console.WriteLine($"Un jour, {nomHero} trouva un chien abandonné au bord de la route. Déterminé à lui offrir une nouvelle vie, {nomHero} l'adopta et lui donna le nom de Mambo. Ensemble, ils vécurent de nombreuses aventures et devinrent les meilleurs amis du monde.");
+         Console.ReadKey();
 
     }
     if (choix == "3")
