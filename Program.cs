@@ -1,122 +1,159 @@
-﻿using Microsoft.VisualBasic;
-using System.Text.Json;
-bool demo = true; //debug mode on = false
+﻿using System.Text.Json;
+bool DebugModeOFF = true; //debug mode on = false
+bool PromptON = true;
+bool LetreparletreOFF = false;
 await UltraLauncher();
 
 async Task UltraLauncher()
 {
-    Prompt();
-    string choixFonction = ChoisirUneAction();
-    switch (choixFonction)
+    if (DebugModeOFF)
     {
-        case "1":
-            Console.Title = "Histoire";
-            Histoire();
-            break;
-        default: break;
-    }
-    switch (choixFonction)
-    {
-        case "":
-            Console.Clear();
-            UltraLauncher();
-            break;
-        default: break;
-    }
+        Prompt();
+        string choixFonction = ChoisirUneAction();
+        switch (choixFonction)
+        {
+            case "1":
+                Console.Title = "Histoire";
+                Histoire();
+                break;
+            default: break;
+        }
+        switch (choixFonction)
+        {
+            case "":
+                Console.Clear();
+                UltraLauncher();
+                break;
+            default: break;
+        }
 
 
-    switch (choixFonction)
-    {
-        case "2":
-            Console.Title = "Calculatrice";
-            Calculatrice();
+        switch (choixFonction)
+        {
+            case "2":
+                Console.Title = "Calculatrice";
+                Calculatrice();
 
-            break;
-        default: break;
-    }
+                break;
+            default: break;
+        }
 
-    switch (choixFonction)
-    {
-        case "3":
-            Console.Title = "Timer";
-            Console.Clear();
-            Timer(demo);
+        switch (choixFonction)
+        {
+            case "3":
+                Console.Title = "Timer";
+                Console.Clear();
+                Timer(DebugModeOFF);
 
-            break;
-        default: break;
-    }
+                break;
+            default: break;
+        }
 
-    switch (choixFonction)
-    {
-        case "4":
+        switch (choixFonction)
+        {
+            case "4":
+                int Crono = 0;
+                bool running = false;
 
+                LettreParLettre("Appuyez sur la touche Espace pour démarrer le chronomètre...");
 
-            int Crono = 0;
-            while (true)
-            {
-                await Task.Delay(1000); // Attendre 1 seconde
-
-                Crono++; // Incrémenter le compteur
-
-                if (Crono == 30)
+                ConsoleKeyInfo touche = Console.ReadKey(); // Lire la prochaine touche pressée par l'utilisateur
+                if (touche.Key == ConsoleKey.Spacebar)
                 {
-                    Crono = 0; // Réinitialiser le compteur
-                    Console.Beep(); // Émettre un bip
+                    running = true;
                 }
 
-                Console.WriteLine(Crono); // Afficher le compteur
-            }
+                while (true)
+                {
+                    if (running)
+                    {
+                        Crono++;
+                        Thread.Sleep(1000);
+                        Console.WriteLine(Crono); // Afficher le compteur
+
+                        if (Console.KeyAvailable)
+                        {
+                            ConsoleKeyInfo StopCrono = Console.ReadKey(true); // Lire la prochaine touche pressée par l'utilisateur
+                            if (StopCrono.Key == ConsoleKey.Spacebar)
+                            {
+                                LettreParLettre($"Le chronomètre a mesuré {Crono} secondes");
+                                LettreParLettre("");
+                                LettreParLettre("Appuyez sur une touche pour revenir au menu principal...");
+                                Console.ReadKey();
+                                Console.Clear();
+                                UltraLauncher();
+                                break; // Sortir de la boucle une fois que le chronomètre est arrêté
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Le chronomètre est en attente de démarrage...");
+                        Thread.Sleep(1000); // Attente de 1 seconde avant de vérifier à nouveau
+                    }
+                }
+
+                break;
+            default: break;
+        }
+        switch (choixFonction)
+        {
+            case "5":
+                Console.Clear();
+                Snake.Play();
 
 
+                break;
+            default: break;
+        }
 
 
-
-            break;
-        default: break;
-    }
-    switch (choixFonction)
-    {
-        case "5":
+        if (choixFonction == "6")
+        {
             Console.Clear();
-            Snake.Play();
-
-
-            break;
-        default: break;
+            await AppelApi();
+        }
+        FinDuProgramme();
     }
-
-
-    if (choixFonction == "6")
+    else
     {
-        Console.Clear();
-        await AppelApi();
+        PromptON = false;
+        DebugModeOFF = true;
+
+        UltraLauncher();
+
+
     }
-    FinDuProgramme();
 }
 
 
 void LettreParLettre(string phrase)
-{
-    Random aleatoire = new Random();
-
-    if (demo)
+{   if (LetreparletreOFF = false)
     {
-        foreach (char c in phrase)
-        {
+        Random aleatoire = new Random();
 
-            int attente = aleatoire.Next(100); //Génère un entier compris entre 0 et 1000        
-            Console.Write(c);
-            // attendre un temps
-            Thread.Sleep(attente);
+        if (DebugModeOFF)
+        {
+            foreach (char c in phrase)
+            {
+
+                int attente = aleatoire.Next(100); //Génère un entier compris entre 0 et 1000        
+                Console.Write(c);
+                // attendre un temps
+                Thread.Sleep(attente);
+
+            }
+            Console.WriteLine();
 
         }
-        Console.WriteLine();
+        else
+        {
+            string c = phrase;
+            Console.WriteLine(c);
+        }
+        
     }
-    else
-    {
-        string c = phrase;
-        Console.WriteLine(c);
-    }
+else{Console.WriteLine(phrase);}
     // v2 attendre un temps aléatoire entre 0.1s et 1 s
 }
 
@@ -195,10 +232,12 @@ void Timer(bool demo)
 
 void Prompt()
 {
-    Console.ForegroundColor = ConsoleColor.DarkYellow;
-    Console.Title = "Ultra-launcher";
+    if (PromptON)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.Title = "Ultra-launcher";
 
-    X(@"
+        X(@"
  /$$   /$$ /$$    /$$$$$$$$ /$$$$$$$   /$$$$$$                                         
 | $$  | $$| $$   |__  $$__/| $$__  $$ /$$__  $$                                        
 | $$  | $$| $$      | $$   | $$  \ $$| $$  \ $$                                        
@@ -220,8 +259,14 @@ void Prompt()
 |________/|__/  |__/ \______/ |__/  \__/ \______/ |__/  |__/|________/|__/  |__//$$$$$$
                                                                                |______/                                                                                   
 ");
-    Thread.Sleep(10);
-    Console.Clear();
+        Thread.Sleep(10);
+        Console.Clear();
+    }
+    else
+    {
+        Console.Clear();
+
+    }
 }
 
 
@@ -366,6 +411,9 @@ string ChoisirUneHistoire(string nomHero)
     Console.WriteLine("4 => Histoire: Le Trésor du Pirate ");
     Console.WriteLine("5 => Histoire: La Quête du Dragon d'Or ");
     Console.WriteLine("6 => Histoire: La Légende de l'Épée de Lumière ");
+    Console.WriteLine("7 => la Raspberry Pi 4");
+    Console.WriteLine("8 => l'Ultimaker S7 (la meilleur histoire si vous faites de limpresion 3D)");
+    Console.WriteLine("9 => Le Codeur est la Licorne ");
     return Console.ReadLine();
 }
 
@@ -384,7 +432,7 @@ void RaconterUneHistoire(string nomHero, string choix)
 
         LettreParLettre("un(e) hero  apparu");
 
-        LettreParLettre("le nom(e) de ce hero était {nomHero}");
+        LettreParLettre($"le nom(e) de ce hero était {nomHero}");
         LettreParLettre("ils ratrapérent le bandit");
         LettreParLettre("le boulanger dit merci " + nomHero); LettreParLettre("retrouvers les gateau ");
         LettreParLettre("le mangérent ");
@@ -446,6 +494,44 @@ void RaconterUneHistoire(string nomHero, string choix)
         LettreParLettre($"Avec cette épée à ses côtés, {nomHero} affronte l'obscurité et ramène la lumière dans le monde.");
         LettreParLettre($"Désormais, {nomHero} est vénéré(e) comme le(la) sauveur(se) de la prophétie, et son nom résonne dans les annales de l'histoire.");
         Console.ReadKey();
+    }
+    void RaconterUneHistoire(string nomHero, string choix)
+    {
+        if (choix == "7")
+        {
+            // Histoire 7
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            LettreParLettre($"Histoire 1 : Le Mystère de la Raspberry Pi 4");
+            LettreParLettre($"Un jour, dans un lointain laboratoire informatique, une Raspberry Pi 4 a mystérieusement disparu.");
+            LettreParLettre($"Un(e) héros/héroïne appelé(e) {nomHero} a été appelé(e) pour résoudre ce mystère.");
+            LettreParLettre($"{nomHero}, armé(e) de son clavier et de sa souris, a traqué les indices et résolu le mystère de la Raspberry Pi 4 manquante.");
+            LettreParLettre($"Grâce à son ingéniosité, {nomHero} a découvert que la Raspberry Pi 4 s'était cachée dans un tas de câbles réseau !");
+            LettreParLettre($"Le laboratoire a célébré {nomHero} comme le(la) plus grand(e) détective informatique de tous les temps !");
+            Console.ReadKey();
+        }
+        if (choix == "8")
+        {
+            // Histoire 8
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            LettreParLettre($"Histoire 2 : L'Aventure de l'Ultimaker S7");
+            LettreParLettre($"Un(e) if (choix == \"3\")/héroïne intrépide nommé(e) {nomHero} s'est lancé(e) dans une quête pour maîtriser l'Ultimaker S7.");
+            LettreParLettre($"{nomHero} a dû affronter des défis redoutables, tels que le calibrage de l'extrudeuse et le nivellement du lit d'impression.");
+            LettreParLettre($"Après de nombreuses heures d'essais et d'erreurs, {nomHero} a réussi à imprimer une pièce parfaite !");
+            LettreParLettre($"L'Ultimaker S7 a été impressionnée par les compétences de {nomHero} et a accepté de devenir son fidèle allié dans ses futures créations.");
+            Console.ReadKey();
+        }
+        if (choix == "9")
+        {
+            // Histoire 9
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            LettreParLettre("Histoire 3 : Le Codeur et la Licorne");
+            LettreParLettre($"Un jour, un codeur nommé {nomHero} rencontra une licorne dans son code.");
+            LettreParLettre($"La licorne, se baladant librement dans la matrice de bits, était curieuse de découvrir le monde du code.");
+            LettreParLettre($"{nomHero} a enseigné à la licorne les joies du codage, et ensemble, ils ont créé des programmes magiques !");
+            LettreParLettre($"Désormais, {nomHero} et la licorne travaillent en tandem, apportant magie et technologie au monde entier.");
+            Console.ReadKey();
+        }
+        // Ajoutez d'autres histoires selon le même schéma
     }
 
 }
