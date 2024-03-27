@@ -511,7 +511,7 @@ void RaconterUneHistoire(string nomHero, string choix)
         Console.Clear();
         // Histoire 8
         LettreParLettre($"Histoire 2 : L'Aventure de l'Ultimaker S7");
-            LettreParLettre($"Un(e) if (choix == \"3\")/héroïne intrépide nommé(e) {nomHero} s'est lancé(e) dans une quête pour maîtriser l'Ultimaker S7.");
+            LettreParLettre($"Un(e) Héro/héroïne intrépide nommé(e) {nomHero} s'est lancé(e) dans une quête pour maîtriser l'Ultimaker S7.");
             LettreParLettre($"{nomHero} a dû affronter des défis redoutables, tels que le calibrage de l'extrudeuse et le nivellement du lit d'impression.");
             LettreParLettre($"Après de nombreuses heures d'essais et d'erreurs, {nomHero} a réussi à imprimer une pièce parfaite !");
             LettreParLettre($"L'Ultimaker S7 a été impressionnée par les compétences de {nomHero} et a accepté de devenir son fidèle allié dans ses futures créations.");
