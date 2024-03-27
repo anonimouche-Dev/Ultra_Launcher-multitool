@@ -128,8 +128,7 @@ async Task UltraLauncher()
 
 
 void LettreParLettre(string phrase)
-{   if (LetreparletreOFF = false)
-    {
+{   
         Random aleatoire = new Random();
 
         if (DebugModeOFF)
@@ -146,16 +145,13 @@ void LettreParLettre(string phrase)
             Console.WriteLine();
 
         }
-        else
-        {
-            string c = phrase;
-            Console.WriteLine(c);
-        }
-        
+
+
+    
+   
     }
-else{Console.WriteLine(phrase);}
     // v2 attendre un temps aléatoire entre 0.1s et 1 s
-}
+
 
 int LireUnNombre()
 {
@@ -392,8 +388,8 @@ string SaisirNomHero()
 
 string ChoisirUneHistoire(string nomHero)
 {
-
-    Console.ForegroundColor = ConsoleColor.Blue;
+    Console.ForegroundColor= ConsoleColor.Black;
+    Console.BackgroundColor = ConsoleColor.Yellow;
     Console.Clear();
     X(@"
 
@@ -421,8 +417,8 @@ void RaconterUneHistoire(string nomHero, string choix)
 {
     if (choix == "1")
     {
+        Console.Clear();
 
-        Console.ForegroundColor = ConsoleColor.DarkYellow;
         LettreParLettre("histoire 1");
         Console.WriteLine();
         LettreParLettre("alerte alerte ");
@@ -443,7 +439,7 @@ void RaconterUneHistoire(string nomHero, string choix)
     }
     if (choix == "2")
     {
-        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.Clear();
         Console.WriteLine("Histoire 2 : Le chien abandonné");
         Console.WriteLine($"Un jour, {nomHero} trouva un chien abandonné au bord de la route. Déterminé à lui offrir une nouvelle vie, {nomHero} l'adopta et lui donna le nom de Mambo. Ensemble, ils vécurent de nombreuses aventures et devinrent les meilleurs amis du monde.");
          Console.ReadKey();
@@ -451,11 +447,13 @@ void RaconterUneHistoire(string nomHero, string choix)
     }
     if (choix == "3")
     {
+        Console.Clear();
         LettreParLettre($"Dans un monde où les rivières chantaient des mélodies d'antan et les arbres murmuraient des secrets oubliés, se dressait un héros peu ordinaire du nom de {nomHero}. Son nom était une énigme en soi, tout comme ses origines mystérieuses. Il avait été trouvé dans les bras d'une rivière tumultueuse, enveloppé dans une écharpe ornée de symboles anciens.\r\n\r\n{nomHero} avait grandi parmi les sages du village d'Aurélie, où la magie était aussi commune que le souffle du vent. Il était doté d'un don rare : la capacité à communiquer avec les créatures magiques qui peuplaient la forêt environnante. Grâce à ses talents, il était devenu le gardien de la forêt, veillant sur ses habitants avec une bienveillance infinie.\r\n\r\nUn jour, alors que le ciel s'assombrissait et que des ombres menaçantes se profilaient à l'horizon, {nomHero} reçut une vision troublante. Une ancienne force maléfique, emprisonnée depuis des siècles dans les profondeurs de la terre, se préparait à se libérer et à plonger le monde dans les ténèbres éternelles.\r\n\r\nGuidé par son destin, {nomHero} entreprit un voyage périlleux à travers des contrées inconnues, affrontant des monstres terrifiants et des épreuves mortelles. Avec l'aide de ses fidèles compagnons - un  Chiwawa majestueux nommé Mambo, un faucon rapide comme l'éclair appelé Zéphyr, et un esprit de la forêt nommé Sylve - il franchit chaque obstacle avec bravoure et détermination.\r\n\r\nFinalement, après de nombreux défis et sacrifices, {nomHero} atteignit le cœur des ténèbres, là où l'ancienne force maléfique sommeillait. Dans un ultime affrontement épique, il fit appel à tout son courage et à toute sa magie pour sceller à nouveau le mal dans les entrailles de la terre.\r\n\r\nDe retour chez lui, {nomHero} fut accueilli en héros, mais il savait que son voyage n'était pas terminé. Car même dans la paix retrouvée, de nouveaux défis attendaient, et il était prêt à les affronter avec la même bravoure et la même détermination qui l'avaient guidé jusqu'alors.");
     }
     if (choix == "4")
     {
-        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.Clear();
+
         LettreParLettre("Histoire: Le Trésor du Pirate");
         LettreParLettre("Alerte ! Alerte !");
         LettreParLettre("Les habitants de l'île de Tortuga sont en émoi.");
@@ -469,7 +467,7 @@ void RaconterUneHistoire(string nomHero, string choix)
 
     if (choix == "5")
     {
-        Console.ForegroundColor = ConsoleColor.Green;
+        Console.Clear();
         LettreParLettre("Histoire: La Quête du Dragon d'Or");
         LettreParLettre("Une prophétie ancestrale raconte l'existence d'un dragon légendaire, gardien d'un trésor inestimable.");
         LettreParLettre("Ce dragon, fait d'or pur, réside au sommet de la montagne interdite, où nul mortel n'a jamais osé s'aventurer.");
@@ -483,7 +481,7 @@ void RaconterUneHistoire(string nomHero, string choix)
 
     if (choix == "6")
     {
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Clear();
         LettreParLettre($"Histoire: La Légende de l'Épée de Lumière");
         LettreParLettre($"Dans un monde plongé dans les ténèbres, une légende ancienne raconte l'existence d'une épée légendaire, forgée dans la lumière elle-même.");
         LettreParLettre($"Cette épée, capable de vaincre les forces du mal, attend son héros/héroïne destiné(e) à la manier.");
@@ -495,13 +493,12 @@ void RaconterUneHistoire(string nomHero, string choix)
         LettreParLettre($"Désormais, {nomHero} est vénéré(e) comme le(la) sauveur(se) de la prophétie, et son nom résonne dans les annales de l'histoire.");
         Console.ReadKey();
     }
-    void RaconterUneHistoire(string nomHero, string choix)
-    {
+    
         if (choix == "7")
-        {
-            // Histoire 7
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            LettreParLettre($"Histoire 1 : Le Mystère de la Raspberry Pi 4");
+    {
+        Console.Clear();
+        // Histoire 7
+        LettreParLettre($"Histoire 1 : Le Mystère de la Raspberry Pi 4");
             LettreParLettre($"Un jour, dans un lointain laboratoire informatique, une Raspberry Pi 4 a mystérieusement disparu.");
             LettreParLettre($"Un(e) héros/héroïne appelé(e) {nomHero} a été appelé(e) pour résoudre ce mystère.");
             LettreParLettre($"{nomHero}, armé(e) de son clavier et de sa souris, a traqué les indices et résolu le mystère de la Raspberry Pi 4 manquante.");
@@ -510,10 +507,10 @@ void RaconterUneHistoire(string nomHero, string choix)
             Console.ReadKey();
         }
         if (choix == "8")
-        {
-            // Histoire 8
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            LettreParLettre($"Histoire 2 : L'Aventure de l'Ultimaker S7");
+    {
+        Console.Clear();
+        // Histoire 8
+        LettreParLettre($"Histoire 2 : L'Aventure de l'Ultimaker S7");
             LettreParLettre($"Un(e) if (choix == \"3\")/héroïne intrépide nommé(e) {nomHero} s'est lancé(e) dans une quête pour maîtriser l'Ultimaker S7.");
             LettreParLettre($"{nomHero} a dû affronter des défis redoutables, tels que le calibrage de l'extrudeuse et le nivellement du lit d'impression.");
             LettreParLettre($"Après de nombreuses heures d'essais et d'erreurs, {nomHero} a réussi à imprimer une pièce parfaite !");
@@ -522,9 +519,9 @@ void RaconterUneHistoire(string nomHero, string choix)
         }
         if (choix == "9")
         {
-            // Histoire 9
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            LettreParLettre("Histoire 3 : Le Codeur et la Licorne");
+        // Histoire 9
+        Console.Clear();
+        LettreParLettre("Histoire 3 : Le Codeur et la Licorne");
             LettreParLettre($"Un jour, un codeur nommé {nomHero} rencontra une licorne dans son code.");
             LettreParLettre($"La licorne, se baladant librement dans la matrice de bits, était curieuse de découvrir le monde du code.");
             LettreParLettre($"{nomHero} a enseigné à la licorne les joies du codage, et ensemble, ils ont créé des programmes magiques !");
@@ -532,7 +529,7 @@ void RaconterUneHistoire(string nomHero, string choix)
             Console.ReadKey();
         }
         // Ajoutez d'autres histoires selon le même schéma
-    }
+    
 
 }
 
