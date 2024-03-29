@@ -4,6 +4,7 @@ bool PromptON = true;
 bool LetreparletreOFF = false;
 await UltraLauncher();
 
+
 async Task UltraLauncher()
 {
     if (DebugModeOFF)
@@ -11,6 +12,7 @@ async Task UltraLauncher()
         Prompt();
         string choixFonction = ChoisirUneAction();
         switch (choixFonction)
+
         {
             case "1":
                 Console.Title = "Histoire";
@@ -128,8 +130,9 @@ async Task UltraLauncher()
 
 
 void LettreParLettre(string phrase)
-{   
-        Random aleatoire = new Random();
+{
+
+    Random aleatoire = new Random();
 
         if (DebugModeOFF)
         {
@@ -572,6 +575,7 @@ static string ChoisirUneAction()
     Console.WriteLine("4 => Chrono Beta");
     Console.WriteLine("5 => Snake");
     Console.WriteLine("6 => Histoire en ligne");
+    Console.WriteLine("");
     string choixFonction = Console.ReadLine();
     return choixFonction;
 
