@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 bool DebugModeOFF = true; //debug mode on = false
 bool PromptON = true;
 bool LetreparletreOFF = false;
@@ -134,26 +135,26 @@ void LettreParLettre(string phrase)
 
     Random aleatoire = new Random();
 
-        if (DebugModeOFF)
+    if (DebugModeOFF)
+    {
+        foreach (char c in phrase)
         {
-            foreach (char c in phrase)
-            {
 
-                int attente = aleatoire.Next(100); //Génère un entier compris entre 0 et 1000        
-                Console.Write(c);
-                // attendre un temps
-                Thread.Sleep(attente);
-
-            }
-            Console.WriteLine();
+            int attente = aleatoire.Next(100); //Génère un entier compris entre 0 et 1000        
+            Console.Write(c);
+            // attendre un temps
+            Thread.Sleep(attente);
 
         }
+        Console.WriteLine();
 
-
-    
-   
     }
-    // v2 attendre un temps aléatoire entre 0.1s et 1 s
+
+
+
+
+}
+// v2 attendre un temps aléatoire entre 0.1s et 1 s
 
 
 int LireUnNombre()
@@ -233,6 +234,7 @@ void Prompt()
 {
     if (PromptON)
     {
+        Console.BackgroundColor = ConsoleColor.Black;
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.Title = "Ultra-launcher";
 
@@ -371,11 +373,11 @@ void Calculatrice()
 
 void Histoire()
 {
-    Console.ForegroundColor= ConsoleColor.Black;
+    Console.ForegroundColor = ConsoleColor.Black;
     Console.BackgroundColor = ConsoleColor.Yellow;
     string nomHero = SaisirNomHero();
     SaisirJenre();
-    
+
     string choix = ChoisirUneHistoire(nomHero);
 
     while (DoitContinuer(choix))
@@ -387,12 +389,88 @@ void Histoire()
 
 string SaisirNomHero()
 {
-   Console.Clear();
-     
-    Console.WriteLine("ecrit ton Nom ");
-    Console.WriteLine(">");
-    return Console.ReadLine();
+    Console.Clear();
+
+
+
+    string userName = Environment.UserName;
+
+    Console.CursorVisible = false;
+    ConsoleKeyInfo key2;
+    int selectedIndex2 = 0;
+    string[] options = { userName, "Nouveu nom dutilisateur " };
+
+    do
+    {
+        Console.Clear();
+        Console.WriteLine("Selectioner votre Nom Dutilisateur");
+
+        for (int i2 = 0; i2 < options.Length; i2++)
+        {
+            if (i2 == selectedIndex2)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.Write(" > ");
+            }
+            else
+            {
+
+                Console.Write("   ");
+            }
+            Console.WriteLine(options[i2]);
+            Console.ResetColor();
+        }
+
+        key2 = Console.ReadKey(true);
+
+        if (key2.Key == ConsoleKey.UpArrow)
+        {
+            selectedIndex2 = (selectedIndex2 == 0) ? options.Length - 1 : selectedIndex2 - 1;
+        }
+        else if (key2.Key == ConsoleKey.DownArrow)
+        {
+            selectedIndex2 = (selectedIndex2 == options.Length - 1) ? 0 : selectedIndex2 + 1;
+        }
+
+    } while (key2.Key != ConsoleKey.Enter);
+
+    Console.Clear();
+
+    if (selectedIndex2 == 0)
+        Console.CursorVisible = true;
+    {
+        Console.ForegroundColor = ConsoleColor.Black;
+        Console.BackgroundColor = ConsoleColor.Yellow;
+        string NewName = userName;
+
+        Thread.Sleep(1000);
+    }
+    if (selectedIndex2 == 1)
+    {
+        Console.CursorVisible = true;
+        Console.ForegroundColor = ConsoleColor.Black;
+        Console.BackgroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("Saisissez le Nouveau nom d'utilisateur ");
+        Console.Write("> ");
+        string NewName = Console.ReadLine();
+        return NewName;
+
+    }
+
+    if (selectedIndex2 == 0)
+    {
+        Console.CursorVisible = true;
+        Console.ForegroundColor = ConsoleColor.Black;
+        Console.BackgroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"{userName} sélectionné");
+        Thread.Sleep(1000);
+        return (selectedIndex2 == 0) ? userName : "";
+    }
+
+    return "";
 }
+
 static string SaisirJenre()
 {
     Console.CursorVisible = false;
@@ -415,6 +493,7 @@ static string SaisirJenre()
             }
             else
             {
+
                 Console.Write("   ");
             }
             Console.WriteLine(options[i]);
@@ -443,7 +522,7 @@ static string SaisirJenre()
 
 string ChoisirUneHistoire(string nomHero)
 {
-    Console.ForegroundColor= ConsoleColor.Black;
+    Console.ForegroundColor = ConsoleColor.Black;
     Console.BackgroundColor = ConsoleColor.Yellow;
     Console.Clear();
     X(@"
@@ -467,15 +546,17 @@ $$ |  $$ |$$ |$$$$$$$  |  \$$$$  |\$$$$$$  |$$ |$$ |      \$$$$$$$\ $$$$$$$  |
     Console.WriteLine("5 => Histoire: La Quête du Dragon d'Or ");
     Console.WriteLine("6 => Histoire: La Légende de l'Épée de Lumière ");
     Console.WriteLine("7 => la Raspberry Pi 4");
-    Console.WriteLine("8 => l'Ultimaker S7 ");
+    Console.WriteLine("8 => l'Ultimaker S7  ");
     Console.WriteLine("9 => Le Codeur est la Licorne ");
     Console.WriteLine("P => Parametres");
-    return Console.ReadLine();
+    Console.Write("> ");
+    string choix = Console.ReadLine();
+    return choix;
 }
 
 void RaconterUneHistoire(string nomHero, string choix)
 {
-    
+
     if (choix == "1")
     {
         Console.Clear();
@@ -503,7 +584,7 @@ void RaconterUneHistoire(string nomHero, string choix)
         Console.Clear();
         Console.WriteLine("Histoire 2 : Le chien abandonné");
         Console.WriteLine($"Un jour, {nomHero} trouva un chien abandonné au bord de la route. Déterminé à lui offrir une nouvelle vie, {nomHero} l'adopta et lui donna le nom de Mambo. Ensemble, ils vécurent de nombreuses aventures et devinrent les meilleurs amis du monde.");
-         Console.ReadKey();
+        Console.ReadKey();
 
     }
     if (choix == "3")
@@ -554,45 +635,46 @@ void RaconterUneHistoire(string nomHero, string choix)
         LettreParLettre($"Désormais, {nomHero} est vénéré(e) comme le(la) sauveur(se) de la prophétie, et son nom résonne dans les annales de l'histoire.");
         Console.ReadKey();
     }
-    
-        if (choix == "7")
+
+    if (choix == "7")
     {
         Console.Clear();
         // Histoire 7
         LettreParLettre($"Histoire 1 : Le Mystère de la Raspberry Pi 4");
-            LettreParLettre($"Un jour, dans un lointain laboratoire informatique, une Raspberry Pi 4 a mystérieusement disparu.");
-            LettreParLettre($"Un(e) héros/héroïne appelé(e) {nomHero} a été appelé(e) pour résoudre ce mystère.");
-            LettreParLettre($"{nomHero}, armé(e) de son clavier et de sa souris, a traqué les indices et résolu le mystère de la Raspberry Pi 4 manquante.");
-            LettreParLettre($"Grâce à son ingéniosité, {nomHero} a découvert que la Raspberry Pi 4 s'était cachée dans un tas de câbles réseau !");
-            LettreParLettre($"Le laboratoire a célébré {nomHero} comme le(la) plus grand(e) détective informatique de tous les temps !");
-            Console.ReadKey();
-        }
-        if (choix == "8")
+        LettreParLettre($"Un jour, dans un lointain laboratoire informatique, une Raspberry Pi 4 a mystérieusement disparu.");
+        LettreParLettre($"Un(e) héros/héroïne appelé(e) {nomHero} a été appelé(e) pour résoudre ce mystère.");
+        LettreParLettre($"{nomHero}, armé(e) de son clavier et de sa souris, a traqué les indices et résolu le mystère de la Raspberry Pi 4 manquante.");
+        LettreParLettre($"Grâce à son ingéniosité, {nomHero} a découvert que la Raspberry Pi 4 s'était cachée dans un tas de câbles réseau !");
+        LettreParLettre($"Le laboratoire a célébré {nomHero} comme le(la) plus grand(e) détective informatique de tous les temps !");
+        Console.ReadKey();
+    }
+    if (choix == "8")
     {
         Console.Clear();
         // Histoire 8
         LettreParLettre($"Histoire 2 : L'Aventure de l'Ultimaker S7");
-            LettreParLettre($"Un(e) Héro/héroïne intrépide nommé(e) {nomHero} s'est lancé(e) dans une quête pour maîtriser l'Ultimaker S7.");
-            LettreParLettre($"{nomHero} a dû affronter des défis redoutables, tels que le calibrage de l'extrudeuse et le nivellement du lit d'impression.");
-            LettreParLettre($"Après de nombreuses heures d'essais et d'erreurs, {nomHero} a réussi à imprimer une pièce parfaite !");
-            LettreParLettre($"L'Ultimaker S7 a été impressionnée par les compétences de {nomHero} et a accepté de devenir son fidèle allié dans ses futures créations.");
-            Console.ReadKey();
-        }
-        if (choix == "9")
-        {
+        LettreParLettre($"Un(e) Héro/héroïne intrépide nommé(e) {nomHero} s'est lancé(e) dans une quête pour maîtriser l'Ultimaker S7.");
+        LettreParLettre($"{nomHero} a dû affronter des défis redoutables, tels que le calibrage de l'extrudeuse et le nivellement du lit d'impression.");
+        LettreParLettre($"Après de nombreuses heures d'essais et d'erreurs, {nomHero} a réussi à imprimer une pièce parfaite !");
+        LettreParLettre($"L'Ultimaker S7 a été impressionnée par les compétences de {nomHero} et a accepté de devenir son fidèle allié dans ses futures créations.");
+        Console.ReadKey();
+    }
+    if (choix == "9")
+    {
         // Histoire 9
         Console.Clear();
         LettreParLettre("Histoire 3 : Le Codeur et la Licorne");
-            LettreParLettre($"Un jour, un codeur nommé {nomHero} rencontra une licorne dans son code.");
-            LettreParLettre($"La licorne, se baladant librement dans la matrice de bits, était curieuse de découvrir le monde du code.");
-            LettreParLettre($"{nomHero} a enseigné à la licorne les joies du codage, et ensemble, ils ont créé des programmes magiques !");
-            LettreParLettre($"Désormais, {nomHero} et la licorne travaillent en tandem, apportant magie et technologie au monde entier.");
-            Console.ReadKey();
-        }
+        LettreParLettre($"Un jour, un codeur nommé {nomHero} rencontra une licorne dans son code.");
+        LettreParLettre($"La licorne, se baladant librement dans la matrice de bits, était curieuse de découvrir le monde du code.");
+        LettreParLettre($"{nomHero} a enseigné à la licorne les joies du codage, et ensemble, ils ont créé des programmes magiques !");
+        LettreParLettre($"Désormais, {nomHero} et la licorne travaillent en tandem, apportant magie et technologie au monde entier.");
+        Console.ReadKey();
+    }
     if (choix == "9")
-    { Console.Clear();
-    
-    
+    {
+        Console.Clear();
+
+
     }
 
 
@@ -638,10 +720,9 @@ static string ChoisirUneAction()
     Console.WriteLine("4 => Chrono Beta");
     Console.WriteLine("5 => Snake");
     Console.WriteLine("6 => Histoire en ligne");
-    Console.WriteLine("");
+    Console.Write("> ");
     string choixFonction = Console.ReadLine();
     return choixFonction;
-
 }
 
 public class HistoireEnLigne
