@@ -4,7 +4,8 @@ bool DebugModeOFF = true; //debug mode on = false
 bool PromptON = true;
 bool LetreparletreOFF = false;
 await UltraLauncher();
-
+Console.BackgroundColor = ConsoleColor.Black;
+Console.ForegroundColor = ConsoleColor.DarkYellow;
 
 async Task UltraLauncher()
 {
