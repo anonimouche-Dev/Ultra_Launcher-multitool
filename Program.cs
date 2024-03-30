@@ -371,7 +371,11 @@ void Calculatrice()
 
 void Histoire()
 {
+    Console.ForegroundColor= ConsoleColor.Black;
+    Console.BackgroundColor = ConsoleColor.Yellow;
     string nomHero = SaisirNomHero();
+    SaisirJenre();
+    
     string choix = ChoisirUneHistoire(nomHero);
 
     while (DoitContinuer(choix))
@@ -383,10 +387,58 @@ void Histoire()
 
 string SaisirNomHero()
 {
-    Console.ForegroundColor = ConsoleColor.Cyan;
+   Console.Clear();
+     
     Console.WriteLine("ecrit ton Nom ");
     Console.WriteLine(">");
     return Console.ReadLine();
+}
+static string SaisirJenre()
+{
+    Console.CursorVisible = false;
+    ConsoleKeyInfo key;
+    int selectedIndex = 0;
+    string[] options = { "Héros", "Héroïne" };
+
+    do
+    {
+        Console.Clear();
+        Console.WriteLine("Choisissez votre personnage :");
+
+        for (int i = 0; i < options.Length; i++)
+        {
+            if (i == selectedIndex)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.Write(" > ");
+            }
+            else
+            {
+                Console.Write("   ");
+            }
+            Console.WriteLine(options[i]);
+            Console.ResetColor();
+        }
+
+        key = Console.ReadKey(true);
+
+        if (key.Key == ConsoleKey.UpArrow)
+        {
+            selectedIndex = (selectedIndex == 0) ? options.Length - 1 : selectedIndex - 1;
+        }
+        else if (key.Key == ConsoleKey.DownArrow)
+        {
+            selectedIndex = (selectedIndex == options.Length - 1) ? 0 : selectedIndex + 1;
+        }
+
+    } while (key.Key != ConsoleKey.Enter);
+
+    Console.Clear();
+    Console.WriteLine("Vous avez choisi : " + options[selectedIndex]);
+
+    string genre = (selectedIndex == 0) ? "Héros" : "Héroïne"; // Assigne la valeur correspondante à la variable Genre
+    return genre; // Retourne l'option choisie
 }
 
 string ChoisirUneHistoire(string nomHero)
@@ -396,12 +448,16 @@ string ChoisirUneHistoire(string nomHero)
     Console.Clear();
     X(@"
 
-  _    _ _____  _____ _______ ____ _____ _____  ______ 
- | |  | |_   _|/ ____|__   __/ __ \_   _|  __ \|  ____|
- | |__| | | | | (___    | | | |  | || | | |__) | |__   
- |  __  | | |  \___ \   | | | |  | || | |  _  /|  __|  
- | |  | |_| |_ ____) |  | | | |__| || |_| | \ \| |____ 
- |_|  |_|_____|_____/   |_|  \____/_____|_|  \_\______| ");
+$$\   $$\ $$\             $$\               $$\                               
+$$ |  $$ |\__|            $$ |              \__|                              
+$$ |  $$ |$$\  $$$$$$$\ $$$$$$\    $$$$$$\  $$\  $$$$$$\   $$$$$$\   $$$$$$$\ 
+$$$$$$$$ |$$ |$$  _____|\_$$  _|  $$  __$$\ $$ |$$  __$$\ $$  __$$\ $$  _____|
+$$  __$$ |$$ |\$$$$$$\    $$ |    $$ /  $$ |$$ |$$ |  \__|$$$$$$$$ |\$$$$$$\  
+$$ |  $$ |$$ | \____$$\   $$ |$$\ $$ |  $$ |$$ |$$ |      $$   ____| \____$$\ 
+$$ |  $$ |$$ |$$$$$$$  |  \$$$$  |\$$$$$$  |$$ |$$ |      \$$$$$$$\ $$$$$$$  |
+\__|  \__|\__|\_______/    \____/  \______/ \__|\__|       \_______|\_______/ 
+
+ ");
     Console.WriteLine("Choisi une histoire " + nomHero);
     Console.WriteLine("0 => Quitter");
     Console.WriteLine("1 => Histoire: le gateau");
@@ -411,13 +467,15 @@ string ChoisirUneHistoire(string nomHero)
     Console.WriteLine("5 => Histoire: La Quête du Dragon d'Or ");
     Console.WriteLine("6 => Histoire: La Légende de l'Épée de Lumière ");
     Console.WriteLine("7 => la Raspberry Pi 4");
-    Console.WriteLine("8 => l'Ultimaker S7 (la meilleur histoire si vous faites de limpresion 3D)");
+    Console.WriteLine("8 => l'Ultimaker S7 ");
     Console.WriteLine("9 => Le Codeur est la Licorne ");
+    Console.WriteLine("P => Parametres");
     return Console.ReadLine();
 }
 
 void RaconterUneHistoire(string nomHero, string choix)
 {
+    
     if (choix == "1")
     {
         Console.Clear();
@@ -531,8 +589,13 @@ void RaconterUneHistoire(string nomHero, string choix)
             LettreParLettre($"Désormais, {nomHero} et la licorne travaillent en tandem, apportant magie et technologie au monde entier.");
             Console.ReadKey();
         }
-        // Ajoutez d'autres histoires selon le même schéma
+    if (choix == "9")
+    { Console.Clear();
     
+    
+    }
+
+
 
 }
 
