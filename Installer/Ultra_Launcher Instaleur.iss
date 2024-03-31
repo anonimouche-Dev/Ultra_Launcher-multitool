@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Ultra-launcher "
-#define MyAppVersion "1.3.3"
+#define MyAppVersion "1.4.5"
 #define MyAppPublisher "Ultra_Tools"
 #define MyAppURL "https://github.com/anonimouche-Dev"
 #define MyAppExeName "Ultra_Launcher.exe"
@@ -27,7 +27,7 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=mysetup
+OutputBaseFilename=Ultra_Launcher-Installeur
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

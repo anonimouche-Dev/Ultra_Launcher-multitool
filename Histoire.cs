@@ -8,6 +8,15 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Ultra_Launcher
 {
+
+    public enum Genre
+    {
+        NonBinaire = 0,
+        Masculin = 1,
+        Feminin = 2
+    }
+
+
     public class Histoire
     {
               

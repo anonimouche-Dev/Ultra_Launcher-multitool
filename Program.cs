@@ -1,11 +1,12 @@
-﻿using System;
-using System.Text.Json;
+﻿using System.Text.Json;
+using Ultra_Launcher;
 bool DebugModeOFF = true; //debug mode on = false
 bool PromptON = true;
 bool LetreparletreOFF = false;
 await UltraLauncher();
 Console.BackgroundColor = ConsoleColor.Black;
 Console.ForegroundColor = ConsoleColor.DarkYellow;
+
 
 async Task UltraLauncher()
 {
@@ -377,13 +378,13 @@ void Histoire()
     Console.ForegroundColor = ConsoleColor.Black;
     Console.BackgroundColor = ConsoleColor.Yellow;
     string nomHero = SaisirNomHero();
-    SaisirJenre();
+    Genre genre = SaisirGenre();
 
     string choix = ChoisirUneHistoire(nomHero);
 
     while (DoitContinuer(choix))
     {
-        RaconterUneHistoire(nomHero, choix);
+        RaconterUneHistoire(nomHero, choix , genre);
         choix = ChoisirUneHistoire(nomHero);
     }
 }
@@ -400,7 +401,7 @@ string SaisirNomHero()
     Console.CursorVisible = false;
     ConsoleKeyInfo key2;
     int selectedIndex2 = 0;
-    string[] options = { userName, "Nouveu nom dutilisateur " };
+    string[] options = { "nom Dutilisaeur Du pc :" + userName, "Nouveu nom dutilisateur " };
 
     do
     {
@@ -472,8 +473,9 @@ string SaisirNomHero()
     return "";
 }
 
-static string SaisirJenre()
+static Genre SaisirGenre()
 {
+    Console.ResetColor();
     Console.CursorVisible = false;
     ConsoleKeyInfo key;
     int selectedIndex = 0;
@@ -486,8 +488,6 @@ static string SaisirJenre()
     
         for (int i = 0; i < options.Length; i++)
         {
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.Yellow;
             if (i == selectedIndex)
             {
                 
@@ -519,14 +519,12 @@ static string SaisirJenre()
     Console.WriteLine("Vous avez choisi : " + options[selectedIndex]);
 
     Console.CursorVisible = true;
-    Console.ForegroundColor = ConsoleColor.Black;
-    Console.BackgroundColor = ConsoleColor.Yellow; 
+ 
 
     if (selectedIndex == 0)
     {
         Console.WriteLine("héro");        
-        string Newgenre = "héro";
-        return Newgenre.ToUpper();
+        return Genre.Masculin;
 
     }
 
@@ -534,10 +532,10 @@ static string SaisirJenre()
     {
         Console.WriteLine($"Héroïne sélectionné");
 
-        return (selectedIndex == 0) ? "Héroïne".ToUpper() : "héro";
+        return Genre.Feminin;
     }
 
-    return "";
+    return Genre.NonBinaire;
 }
 
 string ChoisirUneHistoire(string nomHero)
@@ -574,134 +572,114 @@ $$ |  $$ |$$ |$$$$$$$  |  \$$$$  |\$$$$$$  |$$ |$$ |      \$$$$$$$\ $$$$$$$  |
     return choix;
 }
 
-void RaconterUneHistoire(string nomHero, string choix)
+void RaconterUneHistoire(string nomHero, string choix, Genre genre)
 {
-   
-        if (choix == "1")
-        {
-            Console.Clear();
+    IReadOnlyList<string> histoire = choix switch
+    {
+        "1" => [
+        "histoire 1", "", "alerte alerte ", "au voleur", "on ma volé un gateau", "un héro  apparu", $"le nom de ce héro était {nomHero}",
+        "ils rattrapèrent le bandit", "le boulanger dit merci " + nomHero, "Ils retrouvèrent les gateaux ", "et le mangèrent ",
+        " MIAM Miam", "dit " + nomHero
+        ],
+        "2" => ["Histoire 2 : Le chien abandonné", "", $"Un jour, {nomHero} trouva un chien abandonné au bord de la route. Déterminé à lui offrir une nouvelle vie, {nomHero} l'adopta et lui donna le nom de Mambo. Ensemble, ils vécurent de nombreuses aventures et devinrent les meilleurs amis du monde."]
+        };
 
-            LettreParLettre("histoire 1");
-            Console.WriteLine();
-            LettreParLettre("alerte alerte ");
-
-            LettreParLettre("au voleur");
-            LettreParLettre("on ma volé un gateau");
-
-            LettreParLettre("un(e) hero  apparu");
-
-            LettreParLettre($"le nom(e) de ce hero était {nomHero}");
-            LettreParLettre("ils ratrapérent le bandit");
-            LettreParLettre("le boulanger dit merci " + nomHero); LettreParLettre("retrouvers les gateau ");
-            LettreParLettre("le mangérent ");
-
-            LettreParLettre(" MIAM Miam"); LettreParLettre("dit " + nomHero); Console.ReadKey();
-
-
-        }
-        if (choix == "2")
-        {
-            Console.Clear();
-            Console.WriteLine("Histoire 2 : Le chien abandonné");
-            Console.WriteLine($"Un jour, {nomHero} trouva un chien abandonné au bord de la route. Déterminé à lui offrir une nouvelle vie, {nomHero} l'adopta et lui donna le nom de Mambo. Ensemble, ils vécurent de nombreuses aventures et devinrent les meilleurs amis du monde.");
-            Console.ReadKey();
-
-        }
-        if (choix == "3")
-        {
-            Console.Clear();
-            LettreParLettre($"Dans un monde où les rivières chantaient des mélodies d'antan et les arbres murmuraient des secrets oubliés, se dressait un héros peu ordinaire du nom de {nomHero}. Son nom était une énigme en soi, tout comme ses origines mystérieuses. Il avait été trouvé dans les bras d'une rivière tumultueuse, enveloppé dans une écharpe ornée de symboles anciens.\r\n\r\n{nomHero} avait grandi parmi les sages du village d'Aurélie, où la magie était aussi commune que le souffle du vent. Il était doté d'un don rare : la capacité à communiquer avec les créatures magiques qui peuplaient la forêt environnante. Grâce à ses talents, il était devenu le gardien de la forêt, veillant sur ses habitants avec une bienveillance infinie.\r\n\r\nUn jour, alors que le ciel s'assombrissait et que des ombres menaçantes se profilaient à l'horizon, {nomHero} reçut une vision troublante. Une ancienne force maléfique, emprisonnée depuis des siècles dans les profondeurs de la terre, se préparait à se libérer et à plonger le monde dans les ténèbres éternelles.\r\n\r\nGuidé par son destin, {nomHero} entreprit un voyage périlleux à travers des contrées inconnues, affrontant des monstres terrifiants et des épreuves mortelles. Avec l'aide de ses fidèles compagnons - un  Chiwawa majestueux nommé Mambo, un faucon rapide comme l'éclair appelé Zéphyr, et un esprit de la forêt nommé Sylve - il franchit chaque obstacle avec bravoure et détermination.\r\n\r\nFinalement, après de nombreux défis et sacrifices, {nomHero} atteignit le cœur des ténèbres, là où l'ancienne force maléfique sommeillait. Dans un ultime affrontement épique, il fit appel à tout son courage et à toute sa magie pour sceller à nouveau le mal dans les entrailles de la terre.\r\n\r\nDe retour chez lui, {nomHero} fut accueilli en héros, mais il savait que son voyage n'était pas terminé. Car même dans la paix retrouvée, de nouveaux défis attendaient, et il était prêt à les affronter avec la même bravoure et la même détermination qui l'avaient guidé jusqu'alors.");
-        }
-        if (choix == "4")
-        {
-            Console.Clear();
-
-            LettreParLettre("Histoire: Le Trésor du Pirate");
-            LettreParLettre("Alerte ! Alerte !");
-            LettreParLettre("Les habitants de l'île de Tortuga sont en émoi.");
-            LettreParLettre("Un vieux parchemin révélant l'emplacement du trésor légendaire du pirate Barbe Noire a été découvert !");
-            LettreParLettre("Un(e) héros/héroïne apparut, prêt(e) à affronter les dangers de la mer.");
-            LettreParLettre($"Le nom(e) de ce héros/héroïne est {nomHero}.");
-            LettreParLettre("Après une aventure mouvementée et des combats contre des flibustiers, le trésor fut enfin découvert.");
-            LettreParLettre($"Le village de Tortuga célébra {nomHero} comme le plus grand(e) pirate de tous les temps !");
-            Console.ReadKey();
-        }
-
-        if (choix == "5")
-        {
-            Console.Clear();
-            LettreParLettre("Histoire: La Quête du Dragon d'Or");
-            LettreParLettre("Une prophétie ancestrale raconte l'existence d'un dragon légendaire, gardien d'un trésor inestimable.");
-            LettreParLettre("Ce dragon, fait d'or pur, réside au sommet de la montagne interdite, où nul mortel n'a jamais osé s'aventurer.");
-            LettreParLettre("Un(e) héro/héroïne audacieux(se) se leva pour relever le défi de la quête du dragon d'or.");
-            LettreParLettre($"Son nom(e) est {nomHero}, et il/elle est prêt(e) à affronter tous les dangers pour réussir sa mission.");
-            LettreParLettre("Guidé(e) par sa bravoure et sa détermination, {nomHero} escalada la montagne et défia le dragon.");
-            LettreParLettre("Après un combat épique, le dragon, impressionné par son courage, lui céda le trésor.");
-            LettreParLettre("Ainsi, {nomHero} devint célèbre dans tout le royaume comme le plus grand chasseur de trésors.");
-            Console.ReadKey();
-        }
-
-        if (choix == "6")
-        {
-            Console.Clear();
-            LettreParLettre($"Histoire: La Légende de l'Épée de Lumière");
-            LettreParLettre($"Dans un monde plongé dans les ténèbres, une légende ancienne raconte l'existence d'une épée légendaire, forgée dans la lumière elle-même.");
-            LettreParLettre($"Cette épée, capable de vaincre les forces du mal, attend son héros/héroïne destiné(e) à la manier.");
-            LettreParLettre($"Un(e) héro/héroïne courageux(se) se lève pour relever le défi de retrouver l'Épée de Lumière et sauver le monde de l'obscurité éternelle.");
-            LettreParLettre($"Son nom(e) est {nomHero}, et son destin est de devenir le(la) gardien(ne) de l'Épée de Lumière.");
-            LettreParLettre($"{nomHero}, accompagné(e) de ses fidèles compagnons, entreprend un voyage périlleux à travers des contrées dangereuses.");
-            LettreParLettre($"Après de nombreux défis et épreuves, {nomHero} découvre enfin l'Épée de Lumière.");
-            LettreParLettre($"Avec cette épée à ses côtés, {nomHero} affronte l'obscurité et ramène la lumière dans le monde.");
-            LettreParLettre($"Désormais, {nomHero} est vénéré(e) comme le(la) sauveur(se) de la prophétie, et son nom résonne dans les annales de l'histoire.");
-            Console.ReadKey();
-        }
-
-        if (choix == "7")
-        {
-            Console.Clear();
-            // Histoire 7
-            LettreParLettre($"Histoire 1 : Le Mystère de la Raspberry Pi 4");
-            LettreParLettre($"Un jour, dans un lointain laboratoire informatique, une Raspberry Pi 4 a mystérieusement disparu.");
-            LettreParLettre($"Un(e) héros/héroïne appelé(e) {nomHero} a été appelé(e) pour résoudre ce mystère.");
-            LettreParLettre($"{nomHero}, armé(e) de son clavier et de sa souris, a traqué les indices et résolu le mystère de la Raspberry Pi 4 manquante.");
-            LettreParLettre($"Grâce à son ingéniosité, {nomHero} a découvert que la Raspberry Pi 4 s'était cachée dans un tas de câbles réseau !");
-            LettreParLettre($"Le laboratoire a célébré {nomHero} comme le(la) plus grand(e) détective informatique de tous les temps !");
-            Console.ReadKey();
-        }
-        if (choix == "8")
-        {
-            Console.Clear();
-            // Histoire 8
-            LettreParLettre($"Histoire 2 : L'Aventure de l'Ultimaker S7");
-            LettreParLettre($"Un(e) Héro/héroïne intrépide nommé(e) {nomHero} s'est lancé(e) dans une quête pour maîtriser l'Ultimaker S7.");
-            LettreParLettre($"{nomHero} a dû affronter des défis redoutables, tels que le calibrage de l'extrudeuse et le nivellement du lit d'impression.");
-            LettreParLettre($"Après de nombreuses heures d'essais et d'erreurs, {nomHero} a réussi à imprimer une pièce parfaite !");
-            LettreParLettre($"L'Ultimaker S7 a été impressionnée par les compétences de {nomHero} et a accepté de devenir son fidèle allié dans ses futures créations.");
-            Console.ReadKey();
-        }
-        if (choix == "9")
-        {
-            // Histoire 9
-            Console.Clear();
-            LettreParLettre("Histoire 3 : Le Codeur et la Licorne");
-            LettreParLettre($"Un jour, un codeur nommé {nomHero} rencontra une licorne dans son code.");
-            LettreParLettre($"La licorne, se baladant librement dans la matrice de bits, était curieuse de découvrir le monde du code.");
-            LettreParLettre($"{nomHero} a enseigné à la licorne les joies du codage, et ensemble, ils ont créé des programmes magiques !");
-            LettreParLettre($"Désormais, {nomHero} et la licorne travaillent en tandem, apportant magie et technologie au monde entier.");
-            Console.ReadKey();
-
-        
-        
-    
+    if (choix == "3")
+    {
+        Console.Clear();
+        LettreParLettre($"Dans un monde où les rivières chantaient des mélodies d'antan et les arbres murmuraient des secrets oubliés, se dressait un héros peu ordinaire du nom de {nomHero}. Son nom était une énigme en soi, tout comme ses origines mystérieuses. Il avait été trouvé dans les bras d'une rivière tumultueuse, enveloppé dans une écharpe ornée de symboles anciens.\r\n\r\n{nomHero} avait grandi parmi les sages du village d'Aurélie, où la magie était aussi commune que le souffle du vent. Il était doté d'un don rare : la capacité à communiquer avec les créatures magiques qui peuplaient la forêt environnante. Grâce à ses talents, il était devenu le gardien de la forêt, veillant sur ses habitants avec une bienveillance infinie.\r\n\r\nUn jour, alors que le ciel s'assombrissait et que des ombres menaçantes se profilaient à l'horizon, {nomHero} reçut une vision troublante. Une ancienne force maléfique, emprisonnée depuis des siècles dans les profondeurs de la terre, se préparait à se libérer et à plonger le monde dans les ténèbres éternelles.\r\n\r\nGuidé par son destin, {nomHero} entreprit un voyage périlleux à travers des contrées inconnues, affrontant des monstres terrifiants et des épreuves mortelles. Avec l'aide de ses fidèles compagnons - un  Chiwawa majestueux nommé Mambo, un faucon rapide comme l'éclair appelé Zéphyr, et un esprit de la forêt nommé Sylve - il franchit chaque obstacle avec bravoure et détermination.\r\n\r\nFinalement, après de nombreux défis et sacrifices, {nomHero} atteignit le cœur des ténèbres, là où l'ancienne force maléfique sommeillait. Dans un ultime affrontement épique, il fit appel à tout son courage et à toute sa magie pour sceller à nouveau le mal dans les entrailles de la terre.\r\n\r\nDe retour chez lui, {nomHero} fut accueilli en héros, mais il savait que son voyage n'était pas terminé. Car même dans la paix retrouvée, de nouveaux défis attendaient, et il était prêt à les affronter avec la même bravoure et la même détermination qui l'avaient guidé jusqu'alors.");
     }
-    if (choix == "P")
+    if (choix == "4")
     {
         Console.Clear();
 
-
+        LettreParLettre("Histoire: Le Trésor du Pirate");
+        LettreParLettre("Alerte ! Alerte !");
+        LettreParLettre("Les habitants de l'île de Tortuga sont en émoi.");
+        LettreParLettre("Un vieux parchemin révélant l'emplacement du trésor légendaire du pirate Barbe Noire a été découvert !");
+        LettreParLettre("Un(e) héros/héroïne apparut, prêt(e) à affronter les dangers de la mer.");
+        LettreParLettre($"Le nom(e) de ce héros/héroïne est {nomHero}.");
+        LettreParLettre("Après une aventure mouvementée et des combats contre des flibustiers, le trésor fut enfin découvert.");
+        LettreParLettre($"Le village de Tortuga célébra {nomHero} comme le plus grand(e) pirate de tous les temps !");
+        Console.ReadKey();
+    }
+    if (choix == "5")
+    {
+        Console.Clear();
+        LettreParLettre("Histoire: La Quête du Dragon d'Or");
+        LettreParLettre("Une prophétie ancestrale raconte l'existence d'un dragon légendaire, gardien d'un trésor inestimable.");
+        LettreParLettre("Ce dragon, fait d'or pur, réside au sommet de la montagne interdite, où nul mortel n'a jamais osé s'aventurer.");
+        LettreParLettre("Un(e) héro/héroïne audacieux(se) se leva pour relever le défi de la quête du dragon d'or.");
+        LettreParLettre($"Son nom(e) est {nomHero}, et il/elle est prêt(e) à affronter tous les dangers pour réussir sa mission.");
+        LettreParLettre("Guidé(e) par sa bravoure et sa détermination, {nomHero} escalada la montagne et défia le dragon.");
+        LettreParLettre("Après un combat épique, le dragon, impressionné par son courage, lui céda le trésor.");
+        LettreParLettre("Ainsi, {nomHero} devint célèbre dans tout le royaume comme le plus grand chasseur de trésors.");
+        Console.ReadKey();
+    }
+    if (choix == "6")
+    {
+        Console.Clear();
+        LettreParLettre($"Histoire: La Légende de l'Épée de Lumière");
+        LettreParLettre($"Dans un monde plongé dans les ténèbres, une légende ancienne raconte l'existence d'une épée légendaire, forgée dans la lumière elle-même.");
+        LettreParLettre($"Cette épée, capable de vaincre les forces du mal, attend son héros/héroïne destiné(e) à la manier.");
+        LettreParLettre($"Un(e) héro/héroïne courageux(se) se lève pour relever le défi de retrouver l'Épée de Lumière et sauver le monde de l'obscurité éternelle.");
+        LettreParLettre($"Son nom(e) est {nomHero}, et son destin est de devenir le(la) gardien(ne) de l'Épée de Lumière.");
+        LettreParLettre($"{nomHero}, accompagné(e) de ses fidèles compagnons, entreprend un voyage périlleux à travers des contrées dangereuses.");
+        LettreParLettre($"Après de nombreux défis et épreuves, {nomHero} découvre enfin l'Épée de Lumière.");
+        LettreParLettre($"Avec cette épée à ses côtés, {nomHero} affronte l'obscurité et ramène la lumière dans le monde.");
+        LettreParLettre($"Désormais, {nomHero} est vénéré(e) comme le(la) sauveur(se) de la prophétie, et son nom résonne dans les annales de l'histoire.");
+        Console.ReadKey();
+    }
+    if (choix == "7")
+    {
+        Console.Clear();
+        // Histoire 7
+        LettreParLettre($"Histoire 1 : Le Mystère de la Raspberry Pi 4");
+        LettreParLettre($"Un jour, dans un lointain laboratoire informatique, une Raspberry Pi 4 a mystérieusement disparu.");
+        LettreParLettre($"Un(e) héros/héroïne appelé(e) {nomHero} a été appelé(e) pour résoudre ce mystère.");
+        LettreParLettre($"{nomHero}, armé(e) de son clavier et de sa souris, a traqué les indices et résolu le mystère de la Raspberry Pi 4 manquante.");
+        LettreParLettre($"Grâce à son ingéniosité, {nomHero} a découvert que la Raspberry Pi 4 s'était cachée dans un tas de câbles réseau !");
+        LettreParLettre($"Le laboratoire a célébré {nomHero} comme le(la) plus grand(e) détective informatique de tous les temps !");
+        Console.ReadKey();
+    }
+    if (choix == "8")
+    {
+        Console.Clear();
+        // Histoire 8
+        LettreParLettre($"Histoire 2 : L'Aventure de l'Ultimaker S7");
+        LettreParLettre($"Un(e) Héro/héroïne intrépide nommé(e) {nomHero} s'est lancé(e) dans une quête pour maîtriser l'Ultimaker S7.");
+        LettreParLettre($"{nomHero} a dû affronter des défis redoutables, tels que le calibrage de l'extrudeuse et le nivellement du lit d'impression.");
+        LettreParLettre($"Après de nombreuses heures d'essais et d'erreurs, {nomHero} a réussi à imprimer une pièce parfaite !");
+        LettreParLettre($"L'Ultimaker S7 a été impressionnée par les compétences de {nomHero} et a accepté de devenir son fidèle allié dans ses futures créations.");
+        Console.ReadKey();
+    }
+    if (choix == "9")
+    {
+        // Histoire 9
+        Console.Clear();
+        LettreParLettre("Histoire 3 : Le Codeur et la Licorne");
+        LettreParLettre($"Un jour, un codeur nommé {nomHero} rencontra une licorne dans son code.");
+        LettreParLettre($"La licorne, se baladant librement dans la matrice de bits, était curieuse de découvrir le monde du code.");
+        LettreParLettre($"{nomHero} a enseigné à la licorne les joies du codage, et ensemble, ils ont créé des programmes magiques !");
+        LettreParLettre($"Désormais, {nomHero} et la licorne travaillent en tandem, apportant magie et technologie au monde entier.");
+        Console.ReadKey();
+    }
+    if (choix == "p".ToUpper())
+    {
+        Console.Clear();
+        Console.WriteLine("Hello Word");
     }
 
-
+    Console.Clear();
+    foreach (string phrase in histoire)
+    {
+        if (genre == Genre.Feminin)
+        {
+            LettreParLettre(phrase.Replace("un héro", "une héroïne")
+                .Replace("ce héro", "cette héroïne"));
+        }
+    }
+    Console.ReadKey();
 
 }
 
