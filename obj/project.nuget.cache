@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "by7M062OQBhhoWy1aLO7v7rE0+2dRqlVpg3CF+n//9LfMC6OSkabdY0lbpqXZ/O9MCU2Bfc2yoLhjyaDzmwzDQ==",
+  "dgSpecHash": "pJr2yv3gU1AEv4DmhU7D5jmVKWy4PwnUKtOBRIMu8JBcW1XCQx8Kq8Qs3Qw85HJIPG+Zl1wqnxpDevgrdG4iTQ==",
   "success": true,
   "projectFilePath": "C:\\git\\Ultra_Launcher-multitool\\Ultra_Launcher.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\natha\\.nuget\\packages\\consolegui\\1.4.2\\consolegui.1.4.2.nupkg.sha512"
+  ],
   "logs": []
 }

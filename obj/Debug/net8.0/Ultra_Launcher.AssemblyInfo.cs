@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ultra_Launcher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+969d2c58a61991bbd78e59366823ad8ffa414914")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+feb1ab426d74a51e4e0af60d40d5391638683fb2")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ultra_Launcher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ultra_Launcher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

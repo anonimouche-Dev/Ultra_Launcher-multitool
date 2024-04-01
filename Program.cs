@@ -1,11 +1,30 @@
 ﻿using System.Text.Json;
 using Ultra_Launcher;
+using ConsoleGUI;
+using ConsoleGUI.Controls;
+using ConsoleGUI.Data;
+using ConsoleGUI.Space;
+using static System.Net.Mime.MediaTypeNames;
+using System.Reflection.Emit;
 bool DebugModeOFF = true; //debug mode on = false
 bool PromptON = true;
 bool LetreparletreOFF = false;
 await UltraLauncher();
 Console.BackgroundColor = ConsoleColor.Black;
 Console.ForegroundColor = ConsoleColor.DarkYellow;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 async Task UltraLauncher()
@@ -816,7 +835,7 @@ public static class Snake
 
         // Draw bottom border
         Console.WriteLine(new string('#', width + 2));
-        Console.WriteLine($"Score: {score}");
+        Console.WriteLine($"Score : {score}");
     }
 
     static Position GenerateFoodPosition()
