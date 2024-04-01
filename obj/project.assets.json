@@ -1,36 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
-      "ConsoleGUI/1.4.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/ConsoleGUI.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/ConsoleGUI.dll": {}
-        }
-      }
-    }
+    "net8.0": {}
   },
-  "libraries": {
-    "ConsoleGUI/1.4.2": {
-      "sha512": "xLJW4hsnybSDYUzxQQRv4rcEQsgln9GZh+/Zk4bbNV2EBbgB++XOnwyzLlsIiMiJxUivyo1tls251Xf7zaU9ag==",
-      "type": "package",
-      "path": "consolegui/1.4.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "consolegui.1.4.2.nupkg.sha512",
-        "consolegui.nuspec",
-        "lib/netstandard2.0/ConsoleGUI.dll"
-      ]
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net8.0": [
-      "ConsoleGUI >= 1.4.2"
-    ]
+    "net8.0": []
   },
   "packageFolders": {
     "C:\\Users\\natha\\.nuget\\packages\\": {},
@@ -81,12 +56,6 @@
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
-        "dependencies": {
-          "ConsoleGUI": {
-            "target": "Package",
-            "version": "[1.4.2, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

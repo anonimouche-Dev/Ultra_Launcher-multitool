@@ -1,11 +1,5 @@
 ﻿using System.Text.Json;
 using Ultra_Launcher;
-using ConsoleGUI;
-using ConsoleGUI.Controls;
-using ConsoleGUI.Data;
-using ConsoleGUI.Space;
-using static System.Net.Mime.MediaTypeNames;
-using System.Reflection.Emit;
 bool DebugModeOFF = true; //debug mode on = false
 bool PromptON = true;
 bool LetreparletreOFF = false;
