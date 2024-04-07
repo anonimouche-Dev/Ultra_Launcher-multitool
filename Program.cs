@@ -1,24 +1,55 @@
 ﻿using System.Text.Json;
 using Ultra_Launcher;
+
+
 bool DebugModeOFF = true; //debug mode on = false
 bool PromptON = true;
 bool LetreparletreOFF = false;
+string paramNom = "Name=";
+string cheminFichier = "Parametre.txt";
 await UltraLauncher();
 Console.BackgroundColor = ConsoleColor.Black;
 Console.ForegroundColor = ConsoleColor.DarkYellow;
 
 
+void SauveNom(string nouveauNom)
+{
+    using (StreamWriter writer = File.CreateText(cheminFichier))
+    {
+        writer.WriteLine($"{paramNom}{nouveauNom}");
+    }
+    Console.WriteLine($"Nouveau nom sauvé {nouveauNom} dans le fichier {cheminFichier}");
+}
+
+string RecupererNomSauve()
+{
+    try
+    {
+        if (!File.Exists(cheminFichier)) return string.Empty; // Aucun nom enregistré
+
+        string? ligneNom = File.ReadLines(cheminFichier)
+        .FirstOrDefault(ligne => ligne.StartsWith(paramNom));
+
+        if (ligneNom == null) return string.Empty; // Aucun nom enregistré
+
+        string nom = ligneNom[paramNom.Length..];
+
+        return nom;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Une erreur s'est produite lors de la lecture du fichier : {ex.Message}");
+        return string.Empty;
+    }
+}
 
 
-
-
-
-
-
-
-
-
-
+void YellowBackground()
+{
+    Console.ForegroundColor = ConsoleColor.Black;
+    Console.BackgroundColor = ConsoleColor.Yellow;
+    
+}
 
 
 async Task UltraLauncher()
@@ -30,47 +61,23 @@ async Task UltraLauncher()
         Prompt();
         string choixFonction = ChoisirUneAction();
         switch (choixFonction)
-
         {
             case "1":
                 Console.Title = "Histoire";
                 Histoire();
                 break;
-            default: break;
-        }
-        switch (choixFonction)
-        {
-            case "":
-                Console.Clear();
-                UltraLauncher();
-                break;
-            default: break;
-        }
 
-
-        switch (choixFonction)
-        {
             case "2":
                 Console.Title = "Calculatrice";
                 Calculatrice();
-
                 break;
-            default: break;
-        }
 
-        switch (choixFonction)
-        {
             case "3":
                 Console.Title = "Timer";
                 Console.Clear();
                 Timer(DebugModeOFF);
-
                 break;
-            default: break;
-        }
 
-        switch (choixFonction)
-        {
             case "4":
                 int Crono = 0;
                 bool running = false;
@@ -114,35 +121,36 @@ async Task UltraLauncher()
                 }
 
                 break;
-            default: break;
-        }
-        switch (choixFonction)
-        {
+
             case "5":
                 Console.Clear();
                 Snake.Play();
-
-
                 break;
-            default: break;
+
+            case "6":
+                Console.Clear();
+                await AppelApi();
+                break;
+
+            case "P":
+                Console.Clear();
+                Console.WriteLine("Hello World");
+                break;
+
+            default:
+                Console.Clear();
+                PromptON = false;
+                await UltraLauncher();
+                return;
         }
 
-
-        if (choixFonction == "6")
-        {
-            Console.Clear();
-            await AppelApi();
-        }
         FinDuProgramme();
     }
     else
     {
         PromptON = false;
         DebugModeOFF = true;
-
-        UltraLauncher();
-
-
+        await UltraLauncher();
     }
 }
 
@@ -388,8 +396,7 @@ void Calculatrice()
 
 void Histoire()
 {
-    Console.ForegroundColor = ConsoleColor.Black;
-    Console.BackgroundColor = ConsoleColor.Yellow;
+    YellowBackground();
     string nomHero = SaisirNomHero();
     Genre genre = SaisirGenre();
 
@@ -404,9 +411,12 @@ void Histoire()
 
 string SaisirNomHero()
 {
+    string nomHeroSauve = RecupererNomSauve();
+    if (!string.IsNullOrWhiteSpace(nomHeroSauve)) return nomHeroSauve;
+
+    string nouveauNom = "";
     Console.Clear();
-
-
+    YellowBackground();
 
     string userName = Environment.UserName;
     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -414,18 +424,18 @@ string SaisirNomHero()
     Console.CursorVisible = false;
     ConsoleKeyInfo key2;
     int selectedIndex2 = 0;
-    string[] options = { "nom Dutilisaeur Du pc :" + userName, "Nouveu nom dutilisateur " };
+    string[] options = { "Nom d'utilisateur Du pc :" + userName, "Nouveau nom d'utilisateur " };
 
     do
     {
         Console.Clear();
-        Console.WriteLine("Selectioner votre Nom Dutilisateur");
+        Console.WriteLine("Sélectionner votre nom D'utilisateur");
 
         for (int i2 = 0; i2 < options.Length; i2++)
         {
             if (i2 == selectedIndex2)
             {
-               
+                YellowBackground();
                 Console.Write(" > ");
             }
             else
@@ -457,9 +467,7 @@ string SaisirNomHero()
     {
         Console.ForegroundColor = ConsoleColor.Black;
         Console.BackgroundColor = ConsoleColor.Yellow;
-        string NewName = userName;
-
-        Thread.Sleep(1000);
+        nouveauNom = userName;
     }
     if (selectedIndex2 == 1)
     {
@@ -468,25 +476,15 @@ string SaisirNomHero()
         Console.BackgroundColor = ConsoleColor.Yellow;
         Console.WriteLine("Saisissez le Nouveau nom d'utilisateur ");
         Console.Write("> ");
-        string NewName = Console.ReadLine();
-        return NewName;
-
+        nouveauNom = Console.ReadLine() ?? string.Empty;
     }
 
-    if (selectedIndex2 == 0)
-    {
-        Console.CursorVisible = true;
-        Console.ForegroundColor = ConsoleColor.Black;
-        Console.BackgroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"{userName} sélectionné");
-        Thread.Sleep(1000);
-        return (selectedIndex2 == 0) ? userName : "";
-    }
-
-    return "";
+    SauveNom(nouveauNom);
+    return nouveauNom;
 }
 
-static Genre SaisirGenre()
+
+Genre SaisirGenre()
 {
     Console.ResetColor();
     Console.CursorVisible = false;
@@ -503,7 +501,7 @@ static Genre SaisirGenre()
         {
             if (i == selectedIndex)
             {
-                
+                YellowBackground();
                 Console.Write(" > ");
             }
             else
@@ -589,13 +587,19 @@ void RaconterUneHistoire(string nomHero, string choix, Genre genre)
 {
     IReadOnlyList<string> histoire = choix switch
     {
-        "1" => [
-        "histoire 1", "", "alerte alerte ", "au voleur", "on ma volé un gateau", "un héro  apparu", $"le nom de ce héro était {nomHero}",
-        "ils rattrapèrent le bandit", "le boulanger dit merci " + nomHero, "Ils retrouvèrent les gateaux ", "et le mangèrent ",
-        " MIAM Miam", "dit " + nomHero
-        ],
-        "2" => ["Histoire 2 : Le chien abandonné", "", $"Un jour, {nomHero} trouva un chien abandonné au bord de la route. Déterminé à lui offrir une nouvelle vie, {nomHero} l'adopta et lui donna le nom de Mambo. Ensemble, ils vécurent de nombreuses aventures et devinrent les meilleurs amis du monde."]
-        };
+        "1" => new List<string>
+        {
+            "histoire 1", "", "alerte alerte ", "au voleur", "on m'a volé un gâteau", "un héros  apparu", $"le nom de ce héros était {nomHero}",
+            "ils rattrapèrent le bandit", $"le boulanger dit merci {(genre == Genre.Feminin ? "à" : "au")} " + nomHero, "Ils retrouvèrent les gâteaux ", "et les mangèrent ",
+            " MIAM Miam", $"dit {nomHero}"
+        },
+        "2" => new List<string>
+        {
+            $"Histoire 2 : Le chien abandonné", "", $"Un jour, {nomHero} trouva un chien abandonné au bord de la route. Déterminé à lui offrir une nouvelle vie, {nomHero} l'adopta et lui donna le nom de Mambo. Ensemble, ils vécurent de nombreuses aventures et devinrent les meilleurs amis du monde."
+        },
+        // Ajoutez d'autres histoires ici selon le même modèle
+        _ => new List<string>() // Par défaut, une liste vide
+    };
 
     if (choix == "3")
     {
@@ -677,24 +681,23 @@ void RaconterUneHistoire(string nomHero, string choix, Genre genre)
         LettreParLettre($"Désormais, {nomHero} et la licorne travaillent en tandem, apportant magie et technologie au monde entier.");
         Console.ReadKey();
     }
-    if (choix == "p".ToUpper())
-    {
-        Console.Clear();
-        Console.WriteLine("Hello Word");
-    }
 
     Console.Clear();
     foreach (string phrase in histoire)
     {
         if (genre == Genre.Feminin)
         {
-            LettreParLettre(phrase.Replace("un héro", "une héroïne")
-                .Replace("ce héro", "cette héroïne"));
+            LettreParLettre(phrase.Replace("un héros", "une héroïne")
+                .Replace("ce héros", "cette héroïne"));
+        }
+        else
+        {
+            LettreParLettre(phrase);
         }
     }
     Console.ReadKey();
-
 }
+
 
 bool DoitContinuer(string choix)
 {
@@ -921,6 +924,7 @@ public static class Snake
             snake.RemoveAt(snake.Count - 1);
         }
 
-        DrawBoard();
     }
+
+
 }
