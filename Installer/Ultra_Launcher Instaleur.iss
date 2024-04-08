@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Ultra-launcher "
-#define MyAppVersion "1.4.5"
+#define MyAppVersion "1.5.5"
 #define MyAppPublisher "Ultra_Tools"
 #define MyAppURL "https://github.com/anonimouche-Dev"
 #define MyAppExeName "Ultra_Launcher.exe"
@@ -12,7 +12,7 @@
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
+; (To generate a {C3140D9F-14AF-4913-9A1B-C014646BCD28} GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{50F9CD2A-5CDF-449B-AD10-FFBBEA24DA17}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
