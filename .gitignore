@@ -403,3 +403,5 @@ FodyWeavers.xsd
 /obj
 /bin
 bin/Debug/net8.0/Ultra_Launcher.exe
+/bin
+/obj
