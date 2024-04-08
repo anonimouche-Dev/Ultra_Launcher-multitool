@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Ultra-launcher "
-#define MyAppVersion "1.5.5"
+#define MyAppVersion "1.5.6"
 #define MyAppPublisher "Ultra_Tools"
 #define MyAppURL "https://github.com/anonimouche-Dev"
 #define MyAppExeName "Ultra_Launcher.exe"
