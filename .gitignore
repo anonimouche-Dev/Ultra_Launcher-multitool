@@ -409,3 +409,4 @@ bin/Debug/net8.0/Ultra_Launcher.exe
 *.exe
 *.pdb
 *.dll
+/bin
