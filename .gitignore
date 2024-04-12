@@ -411,3 +411,4 @@ bin/Debug/net8.0/Ultra_Launcher.exe
 *.dll
 /bin
 /obj
+/obj
