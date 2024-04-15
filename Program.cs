@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using Ultra_Launcher;
-using static Ultra_Launcher.ChosirLangage;
 Console.BackgroundColor = ConsoleColor.Black;
 Console.ForegroundColor = ConsoleColor.DarkYellow;
 
@@ -9,18 +8,45 @@ bool DebugModeOFF = true; //debug mode on = false
 bool PromptON = true;
 bool LetreparletreOFF = false;
 string paramNom = "Name=";
-string cheminFichier = "Parametre.txt";
+string paramGenre = "Genre=";
+string cheminFichier = "options.txt";
 await UltraLauncher();
+
 
 
 void SauveNom(string nouveauNom)
 {
-    using (StreamWriter writer = File.CreateText(cheminFichier))
+    try
     {
-        writer.WriteLine($"{paramNom}{nouveauNom}");
+        using (StreamWriter writer = File.AppendText(cheminFichier))
+        {
+            writer.WriteLine($"{paramNom}{nouveauNom}");
+        }
+        Console.WriteLine($"Nouveau nom sauvé {nouveauNom} dans le fichier {cheminFichier}");
     }
-    Console.WriteLine($"Nouveau nom sauvé {nouveauNom} dans le fichier {cheminFichier}");
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Une erreur s'est produite lors de la sauvegarde du nom : {ex.Message}");
+    }
 }
+
+void SauveGenre(string nouveauGenre)
+{
+    try
+    {
+        using (StreamWriter writer = File.AppendText(cheminFichier))
+        {
+            writer.WriteLine($"{paramGenre}{nouveauGenre}");
+        }
+        Console.WriteLine($"Nouveau genre sauvé {nouveauGenre} dans le fichier {cheminFichier}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Une erreur s'est produite lors de la sauvegarde du genre : {ex.Message}");
+    }
+}
+
+
 
 string RecupererNomSauve()
 {
@@ -36,6 +62,27 @@ string RecupererNomSauve()
         string nom = ligneNom[paramNom.Length..];
 
         return nom;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Une erreur s'est produite lors de la lecture du fichier : {ex.Message}");
+        return string.Empty;
+    }
+}
+string RecupererGenreSauve()
+{
+    try
+    {
+        if (!File.Exists(cheminFichier)) return string.Empty; // Aucun Genre enregistré
+
+        string? ligneGenre = File.ReadLines(cheminFichier)
+        .FirstOrDefault(ligne => ligne.StartsWith(paramGenre));
+
+        if (ligneGenre == null) return string.Empty; // Aucun Genre enregistré
+
+        string Genre1 = ligneGenre[paramNom.Length..];
+
+        return Genre1;
     }
     catch (Exception ex)
     {
@@ -443,7 +490,8 @@ static async Task<IReadOnlyList<HistoireEnLigne>> ObtenirLesHistoiresAsync(HttpC
 void Calculatrice()
 {
     Console.Clear();
-    Console.ForegroundColor = ConsoleColor.DarkBlue;
+    
+    
     X(@"
  ██████╗ █████╗ ██╗      ██████╗██╗   ██╗██╗      █████╗ ████████╗██████╗ ██╗ ██████╗███████╗
 ██╔════╝██╔══██╗██║     ██╔════╝██║   ██║██║     ██╔══██╗╚══██╔══╝██╔══██╗██║██╔════╝██╔════╝
@@ -606,70 +654,65 @@ string SaisirNomHero(bool forceChange=false)
 }
 
 
-Genre SaisirGenre()
-{
-    Console.ResetColor();
-    Console.CursorVisible = false;
-    ConsoleKeyInfo key;
-    int selectedIndex = 0;
-    string[] options = { "Héros", "Héroïne" };
+//Genre SaisirGenre(bool forceChange = false)
+//{
+//    if (!forceChange)
+//    {
+//        //Genre genreSauve = RecupererGenreSauve();
+//        if (genreSauve != Genre.NonBinaire)
+//        {
+//            Console.WriteLine($"Genre sauvegardé trouvé : {genreSauve}");
+//            return genreSauve;
+//        }
+//    }
+   
+//    Console.CursorVisible = false;
+//    ConsoleKeyInfo key;
+//    int selectedIndex = 0;
+//    Genre[] options = { Genre.Masculin, Genre.Feminin, Genre.NonBinaire };
 
-    do
-    {
-        Console.Clear();
-        Console.WriteLine("Choisissez votre personnage :");
+//    do
+//    {
+//        Console.Clear();
+//        Console.WriteLine("Choisissez le genre de votre personnage :");
     
-        for (int i = 0; i < options.Length; i++)
-        {
-            if (i == selectedIndex)
-            {
-                YellowBackground();
-                Console.Write(" > ");
-            }
-            else
-            {
+//        for (int i = 0; i < options.Length; i++)
+//        {
+//            if (i == selectedIndex)
+//            {
+//                Console.BackgroundColor = ConsoleColor.Yellow;
+//                Console.ForegroundColor = ConsoleColor.Black;
+//                Console.Write(" > ");
+//            }
+//            else
+//            {
+//                Console.Write("   ");
+//            }
+//            Console.WriteLine(options[i]);
+//            Console.ResetColor();
+//        }
 
-                Console.Write("   ");
-            }
-            Console.WriteLine(options[i]);
-            Console.ResetColor();
-        }
+//        key = Console.ReadKey(true);
 
-        key = Console.ReadKey(true);
+//        if (key.Key == ConsoleKey.UpArrow)
+//        {
+//            selectedIndex = (selectedIndex == 0) ? options.Length - 1 : selectedIndex - 1;
+//        }
+//        else if (key.Key == ConsoleKey.DownArrow)
+//        {
+//            selectedIndex = (selectedIndex == options.Length - 1) ? 0 : selectedIndex + 1;
+//        }
 
-        if (key.Key == ConsoleKey.UpArrow)
-        {
-            selectedIndex = (selectedIndex == 0) ? options.Length - 1 : selectedIndex - 1;
-        }
-        else if (key.Key == ConsoleKey.DownArrow)
-        {
-            selectedIndex = (selectedIndex == options.Length - 1) ? 0 : selectedIndex + 1;
-        }
+//    } while (key.Key != ConsoleKey.Enter);
 
-    } while (key.Key != ConsoleKey.Enter);
+//    Console.CursorVisible = true;
+//    Console.Clear();
+//    Console.WriteLine("Vous avez choisi : " + options[selectedIndex]);
 
-    Console.Clear();
-    Console.WriteLine("Vous avez choisi : " + options[selectedIndex]);
+//    return options[selectedIndex];
+//}
 
-    Console.CursorVisible = true;
- 
 
-    if (selectedIndex == 0)
-    {
-        Console.WriteLine("héro");        
-        return Genre.Masculin;
-
-    }
-
-    if (selectedIndex == 1)
-    {
-        Console.WriteLine($"Héroïne sélectionné");
-
-        return Genre.Feminin;
-    }
-
-    return Genre.NonBinaire;
-}
 
 string ChoisirUneHistoire(string nomHero)
 {
@@ -708,6 +751,7 @@ $$ |  $$ |$$ |$$$$$$$  |  \$$$$  |\$$$$$$  |$$ |$$ |      \$$$$$$$\ $$$$$$$  |
         Console.Write("> ");
 
    //}
+
 //   // else if (langueChoisie == "en")
 //    {
 //        Console.Clear ();
@@ -763,7 +807,8 @@ void RaconterUneHistoire(string nomHero, string choix, Genre genre)
         {
             $"Histoire 2 : Le chien abandonné", "", $"Un jour, {nomHero} trouva un chien abandonné au bord de la route. Déterminé à lui offrir une nouvelle vie, {nomHero} l'adopta et lui donna le nom de Mambo. Ensemble, ils vécurent de nombreuses aventures et devinrent les meilleurs amis du monde."
         },
-        // Ajoutez d'autres histoires ici selon le même modèle
+
+        
         _ => new List<string>() // Par défaut, une liste vide
     };
 
@@ -1013,9 +1058,8 @@ public class HistoireEnLigne
     public string titre { get; set; }
     public string contenu { get; set; }
 }
-public class Snake
+ class Snake
 {
-   
 
-
+    
 }
